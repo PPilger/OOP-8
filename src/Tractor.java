@@ -17,6 +17,16 @@ public class Tractor<F extends Fuel<T>, T extends Number> {
 		return this.id;
 	}
 	
+	public TractorRole getRole()
+	{
+		return this.role;
+	}
+	
+	public Fuel getFuel()
+	{
+		return this.totalConsumption;
+	}
+	
 	public void incOperatingHours(int amount) {
 		if (amount > 0) {
 			operatingHours += amount;

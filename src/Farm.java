@@ -12,42 +12,47 @@ public class Farm {
 		//TODO: init Map
 	}
 	
-	public void AddTractor(Tractor tr)
+	public void addTractor(Tractor tr)
 	{
 		this.myTractors.put(tr.getID(), tr);
 	}
 	
-	public void RemoveTractor(int id)
+	public void removeTractor(int id)
 	{
 		myTractors.remove(id);
 	}
 	
-	public double AvgOperatingHours()
+	public void changeRole(int id, TractorRole tr)
+	{
+		myTractors.get(id);
+	}
+	
+	public double avgOperatingHours()
 	{
 		return 0;
 	}
 	
-	public double AvgDieselUsage()
+	public double avgDieselUsage()
 	{
 		return 0;
 	}
 	
-	public double AvgBioGasUsage()
+	public double avgBioGasUsage()
 	{
 		return 0;
 	}
 	
-	public int MinCoulterCount()
+	public int minCoulterCount()
 	{
 		return 0;
 	}
 	
-	public int MaxCoulterCount()
+	public int maxCoulterCount()
 	{
 		return 0;
 	}
 	
-	public double AvgCapacity()
+	public double avgCapacity()
 	{
 		return 0;
 	}
