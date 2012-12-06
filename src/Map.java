@@ -2,17 +2,18 @@ public class Map<K, V> {
 	private Node root;
 
 	public void put(K key, V value) {
-		root = new Node(key, value, root);
+		Node newNode = new Node(key, value);
+
+		newNode.next = root;
+		root = newNode;
+
+		if (newNode.next != null) {
+			newNode.next.prev = newNode;
+		}
 	}
 
 	public V get(K key) {
-		Node node = root;
-
-		while (node != null && !node.key.equals(key)) {
-			node = node.next;
-		}
-		
-		//node is the searched node
+		Node node = getNode(key);
 
 		if (node != null) {
 			return node.value;
@@ -22,53 +23,73 @@ public class Map<K, V> {
 	}
 
 	public void remove(K key) {
-		Node node = root;
-		Node prev = null;
+		Node node = getNode(key);
 
-		while (node != null && !node.key.equals(key)) {
-			prev = node;
-			node = node.next;
+		if (node == null) {
+			return;
 		}
-		
-		//node is the deletion-target
-		
-		if(node != null) {
-			node = node.next;
-		}
-		
-		//node is the node after the deletion-target
 
-		if (prev != null) {
-			prev.next = node;
+		if (node.prev == null) {
+			root = node.next;
 		} else {
-			root = node;
+			node.prev.next = node.next;
+		}
+
+		if (node.next != null) {
+			node.next.prev = node.prev;
 		}
 	}
-	
-	public Iterator<V> iterator(Filter<V> filter) {
+
+	public Iterator<V> iterator() {
+		return iterator(new Filter<V>() {
+			@Override
+			public boolean accept(V element) {
+				return true;
+			}
+		});
+	}
+
+	public Iterator<V> iterator(final Filter<V> filter) {
 		return new Iterator<V>() {
+			Node next = root;
 
 			@Override
 			public boolean hasNext() {
-				return false;
+				return next != null;
 			}
 
 			@Override
 			public V next() {
-				return null;
+				V value = next.value;
+
+				while (next != null && !filter.accept(next.value)) {
+					next = next.next;
+				}
+
+				return value;
 			}
 		};
+	}
+
+	private Node getNode(K key) {
+		for (Node node = root; node != null; node = node.next) {
+			if (node.key.equals(key)) {
+				return node;
+			}
+		}
+
+		return null; // key not found
 	}
 
 	private class Node {
 		private K key;
 		private V value;
 		private Node next;
+		private Node prev;
 
-		private Node(K key, V value, Node next) {
+		private Node(K key, V value) {
 			this.key = key;
 			this.value = value;
-			this.next = next;
 		}
 	}
 }
