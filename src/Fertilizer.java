@@ -6,5 +6,10 @@ public class Fertilizer extends TraktorBase {
 		super(id);
 		this.capacity = capacity;
 	}
+	
+	public double GetCapacity()
+	{
+		return this.capacity;
+	}
 
 }
