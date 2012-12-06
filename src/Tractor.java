@@ -1,25 +1,30 @@
-public class Tractor<E extends Engine<F>, F extends Number> {
+public class Tractor<F extends Fuel<T>, T> {
 	private static int idCounter = 0;
 	private final int id;
-	private E engine;
 	private F totalConsumption;
 	private int operatingHours;
+	private TractorRole role;
 
-	public Tractor(E engine) {
+	public Tractor() {
 		this.id = idCounter;
 		idCounter++;
-
-		this.engine = engine;
 	}
 
-	public int incOperatingHours(int addHours) {
-		if (addHours > 0) {
-			this.operatingHours += addHours;
+	public void incOperatingHours(int amount) {
+		if (amount > 0) {
+			operatingHours += amount;
 		}
-		return this.operatingHours;
 	}
 
 	public int getOperatingHours() {
-		return this.operatingHours;
+		return operatingHours;
+	}
+	
+	public void incConsumption(T fuelAmount) {
+		totalConsumption.incAmount(fuelAmount);
+	}
+	
+	public T getConsumption() {
+		return totalConsumption.getAmount();
 	}
 }
