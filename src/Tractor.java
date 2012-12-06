@@ -1,4 +1,6 @@
-public class Tractor<F extends Fuel<T>, T> {
+import java.lang.reflect.Method;
+
+public class Tractor<F extends Fuel<T>, T extends Number> {
 	private static int idCounter = 0;
 	private final int id;
 	private F totalConsumption;
@@ -32,5 +34,7 @@ public class Tractor<F extends Fuel<T>, T> {
 		role = newRole;
 	}
 	
-	
+	public Number getAttirbute() {
+		return role.getAttribute();
+	}
 }

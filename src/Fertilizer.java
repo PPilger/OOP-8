@@ -5,7 +5,8 @@ public class Fertilizer implements TractorRole {
 		this.capacity = capacity;
 	}
 
-	public double getCapacity() {
-		return this.capacity;
+	@Override
+	public Double getAttribute() {
+		return capacity;
 	}
 }

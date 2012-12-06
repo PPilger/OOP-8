@@ -5,7 +5,8 @@ public class Seeder implements TractorRole {
 		this.coulter = coulter;
 	}
 
-	public int getCoulter() {
+	@Override
+	public Integer getAttribute() {
 		return coulter;
 	}
 }
