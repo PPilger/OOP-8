@@ -44,6 +44,21 @@ public class Map<K, V> {
 			root = node;
 		}
 	}
+	
+	public Iterator<V> iterator(Filter<V> filter) {
+		return new Iterator<V>() {
+
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
+
+			@Override
+			public V next() {
+				return null;
+			}
+		};
+	}
 
 	private class Node {
 		private K key;
