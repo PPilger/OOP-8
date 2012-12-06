@@ -1,6 +1,3 @@
-import java.util.*;
-
-
 public class Farm {
 
 	private Map<Integer, Tractor> myTractors;//Todo: Pilgis Collection
@@ -9,7 +6,7 @@ public class Farm {
 	public Farm(String name)
 	{
 		this.name = name;
-		//TODO: init Map
+		this.myTractors = new Map<Integer, Tractor>();
 	}
 	
 	public void addTractor(Tractor tr)
@@ -29,7 +26,17 @@ public class Farm {
 	
 	public double avgOperatingHours()
 	{
-		return 0;
+		double sum = 0;
+		int cnt = 0;
+		
+		Iterator it = myTractors.iterator(null);
+		while(it.hasNext()) {
+			cnt++;
+			Tractor tr = it.next();
+			sum += tr.getOperatingHours();
+		}
+		
+		return sum / cnt;
 	}
 	
 	public double avgDieselUsage()
