@@ -24,19 +24,32 @@ public class Farm {
 		myTractors.get(id);
 	}
 	
-	public double avgOperatingHours()
+	public Map<String, Double> avgOperatingHours()
 	{
-		double sum = 0;
-		int cnt = 0;
+		double sumSeeder = 0;
+		double sumFertilizer = 0;
+		int cntSeeder = 0;
+		int cntFertilizer = 0;
 		
-		Iterator<Tractor> it = myTractors.iterator(new Filter<Tractor>());
+		Iterator<Tractor> it = myTractors.iterator();
+		
 		while(it.hasNext()) {
-			cnt++;
 			Tractor tr = it.next();
-			sum += tr.getOperatingHours();
+			if(tr.getRole().getClass() == Seeder.class) {
+				sumSeeder += tr.getOperatingHours();
+				cntSeeder += 1;
+			} else if(tr.getRole().getClass() == Fertilizer.class) {
+				sumFertilizer += tr.getOperatingHours();
+				cntFertilizer += 1;
+			}
 		}
 		
-		return sum / cnt;
+		Map<String, Double> result = new Map<String, Double>();
+		result.put("All", ((sumSeeder+sumFertilizer)/(cntSeeder+cntFertilizer)));
+		result.put("Seeder", sumSeeder/cntSeeder);
+		result.put("Fertilizer", sumFertilizer/cntFertilizer);
+		
+		return result;
 	}
 	
 	public double avgDieselUsage()
