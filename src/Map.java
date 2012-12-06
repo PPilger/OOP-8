@@ -6,19 +6,10 @@ public class Map<K, V> {
 
 		newNode.next = root;
 		root = newNode;
-	}
 
-	private Node getNode(K key) {
-		Node node = root;
-
-		while (node != null) {
-			if (node.key.equals(key)) {
-				return node;
-			}
-			node = node.next;
+		if (newNode.next != null) {
+			newNode.next.prev = newNode;
 		}
-
-		return null; // key not found
 	}
 
 	public V get(K key) {
@@ -33,18 +24,18 @@ public class Map<K, V> {
 
 	public void remove(K key) {
 		Node node = getNode(key);
-		
-		if(node == null) {
+
+		if (node == null) {
 			return;
 		}
-		
-		if(node.prev == null) {
+
+		if (node.prev == null) {
 			root = node.next;
 		} else {
 			node.prev.next = node.next;
 		}
-		
-		if(node.next != null) {
+
+		if (node.next != null) {
 			node.next.prev = node.prev;
 		}
 	}
@@ -78,6 +69,16 @@ public class Map<K, V> {
 				return value;
 			}
 		};
+	}
+
+	private Node getNode(K key) {
+		for (Node node = root; node != null; node = node.next) {
+			if (node.key.equals(key)) {
+				return node;
+			}
+		}
+
+		return null; // key not found
 	}
 
 	private class Node {
