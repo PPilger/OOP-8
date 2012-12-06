@@ -1,6 +1,7 @@
 public abstract class TraktorBase implements Traktor{
 
 	private final int id;
+	private Engine eng;
 	private int operatingHours;
 	
 	public TraktorBase(int id)
@@ -20,10 +21,12 @@ public abstract class TraktorBase implements Traktor{
 	public int GetOperatingHours() {
 		return this.operatingHours;				
 	}
-
+	
 	@Override
-	public Traktor ChangeType(Traktor t) {
-		return null; //Todo: return new Traktor
+	public Engine ChangeEngine(Engine t) {
+		this.eng = t;
+		return this.eng;
 	}
+
 
 }
