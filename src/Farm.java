@@ -29,7 +29,7 @@ public class Farm {
 		double sum = 0;
 		int cnt = 0;
 		
-		Iterator<Tractor> it = myTractors.iterator();
+		Iterator<Tractor> it = myTractors.iterator(new Filter<Tractor>());
 		while(it.hasNext()) {
 			cnt++;
 			Tractor tr = it.next();
