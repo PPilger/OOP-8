@@ -2,15 +2,18 @@ public class Map<K, V> {
 	private Node root;
 
 	public void put(K key, V value) {
-		root = new Node(key, value, root);
+		Node newNode = new Node(key, value);
+
+		newNode.next = root;
+		root = newNode;
 	}
 
-	public V get(K key) {
+	private Node getNode(K key) {
 		Node node = root;
 
 		while (node != null) {
 			if (node.key.equals(key)) {
-				return node.value;
+				return node;
 			}
 			node = node.next;
 		}
@@ -18,24 +21,34 @@ public class Map<K, V> {
 		return null; // key not found
 	}
 
-	public void remove(K key) {
-		Node node = root;
-		Node prev = null;
+	public V get(K key) {
+		Node node = getNode(key);
 
-		while (node != null) {
-			if (node.key.equals(key)) {
-				if (prev != null) {
-					prev.next = node.next;
-				} else {
-					root = node.next;
-				}
-			}
-
-			prev = node;
-			node = node.next;
+		if (node != null) {
+			return node.value;
+		} else {
+			return null;
 		}
 	}
-	
+
+	public void remove(K key) {
+		Node node = getNode(key);
+		
+		if(node == null) {
+			return;
+		}
+		
+		if(node.prev == null) {
+			root = node.next;
+		} else {
+			node.prev.next = node.next;
+		}
+		
+		if(node.next != null) {
+			node.next.prev = node.prev;
+		}
+	}
+
 	public Iterator<V> iterator() {
 		return iterator(new Filter<V>() {
 			@Override
@@ -44,7 +57,7 @@ public class Map<K, V> {
 			}
 		});
 	}
-	
+
 	public Iterator<V> iterator(final Filter<V> filter) {
 		return new Iterator<V>() {
 			Node next = root;
@@ -71,11 +84,11 @@ public class Map<K, V> {
 		private K key;
 		private V value;
 		private Node next;
+		private Node prev;
 
-		private Node(K key, V value, Node next) {
+		private Node(K key, V value) {
 			this.key = key;
 			this.value = value;
-			this.next = next;
 		}
 	}
 }
