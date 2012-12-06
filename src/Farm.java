@@ -24,7 +24,7 @@ public class Farm {
 		double sum = 0;
 		int cnt = 0;
 		
-		Iterator it = myTractors.iterator(null);
+		Iterator<Tractor> it = myTractors.iterator();
 		while(it.hasNext()) {
 			cnt++;
 			Tractor tr = it.next();
