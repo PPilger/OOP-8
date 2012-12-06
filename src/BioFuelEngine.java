@@ -1,7 +1,6 @@
-public class BioFuelEngine extends Engine {
+public class BioFuelEngine extends Engine<Double> {
 
 	public BioFuelEngine(double consumption) {
 		super(consumption);
-		// TODO Auto-generated constructor stub
 	}
 }

@@ -1,15 +1,11 @@
-public class Seeder extends TractorBase{
-
+public class Seeder implements TractorRole {
 	private int coulter;
-	
-	public Seeder(int id, int coulter)
-	{
-		super(id);
+
+	public Seeder(int coulter) {
 		this.coulter = coulter;
-	}	
-	
-	public int getCoulter()
-	{
+	}
+
+	public int getCoulter() {
 		return coulter;
-	}	
+	}
 }

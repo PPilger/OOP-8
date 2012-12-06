@@ -1,6 +1,6 @@
-public class DieselFuelEngine extends Engine {
+public class DieselFuelEngine extends Engine<Integer> {
 
 	public DieselFuelEngine(int consumptionPH) {
-		super((double) consumptionPH);
+		super(consumptionPH);
 	}
 }
