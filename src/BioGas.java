@@ -1,13 +1,11 @@
-
-public class BioGas implements Fuel<Double>{
+public class BioGas implements Fuel<Double> {
 
 	private double gallons;
-	
-	public BioGas(double gallons)
-	{
+
+	public BioGas(double gallons) {
 		this.gallons = gallons;
 	}
-	
+
 	@Override
 	public Double getAmount() {
 		return this.gallons;
@@ -15,7 +13,7 @@ public class BioGas implements Fuel<Double>{
 
 	@Override
 	public void incAmount(Double amount) {
-		this.gallons += amount;		
+		this.gallons += amount;
 	}
 
 }

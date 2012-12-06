@@ -5,14 +5,14 @@ public class Diesel implements Fuel<Integer> {
 	public Diesel(int liter) {
 		this.liter = liter;
 	}
-
-	@Override
-	public void incAmount(Integer amount) {
-		liter += amount;
-	}
 	
 	@Override
 	public Integer getAmount() {
 		return liter;
+	}
+
+	@Override
+	public void incAmount(Integer amount) {
+		liter += amount;
 	}
 }

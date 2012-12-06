@@ -27,4 +27,10 @@ public class Tractor<F extends Fuel<T>, T> {
 	public T getConsumption() {
 		return totalConsumption.getAmount();
 	}
+	
+	public void changeRole(TractorRole newRole) {
+		role = newRole;
+	}
+	
+	
 }
