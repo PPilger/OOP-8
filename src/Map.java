@@ -2,13 +2,19 @@ public class Map<K, V> {
 	private Node root;
 
 	public void put(K key, V value) {
-		Node newNode = new Node(key, value);
+		Node node = getNode(key);
 
-		newNode.next = root;
-		root = newNode;
+		if (node != null) {
+			node.value = value;
+		} else {
+			Node newNode = new Node(key, value);
 
-		if (newNode.next != null) {
-			newNode.next.prev = newNode;
+			newNode.next = root;
+			root = newNode;
+
+			if (newNode.next != null) {
+				newNode.next.prev = newNode;
+			}
 		}
 	}
 
@@ -69,6 +75,34 @@ public class Map<K, V> {
 				return value;
 			}
 		};
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		Node node = root;
+
+		sb.append("[");
+
+		if (node != null) {
+			sb.append(node.key);
+			sb.append(": ");
+			sb.append(node.value);
+
+			node = node.next;
+		}
+
+		while (node != null) {
+			sb.append(", ");
+			sb.append(node.key);
+			sb.append(": ");
+			sb.append(node.value);
+
+			node = node.next;
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	private Node getNode(K key) {
