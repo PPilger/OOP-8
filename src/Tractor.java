@@ -12,6 +12,11 @@ public class Tractor<F extends Fuel<T>, T extends Number> {
 		idCounter++;
 	}
 
+	public int getID()
+	{
+		return this.id;
+	}
+	
 	public void incOperatingHours(int amount) {
 		if (amount > 0) {
 			operatingHours += amount;
