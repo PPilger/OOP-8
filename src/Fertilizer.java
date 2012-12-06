@@ -1,5 +1,5 @@
 
-public class Fertilizer extends TraktorBase {
+public class Fertilizer extends TractorBase {
 
 	private final double capacity;
 	public Fertilizer(int id, double capacity) {
@@ -7,7 +7,7 @@ public class Fertilizer extends TraktorBase {
 		this.capacity = capacity;
 	}
 	
-	public double GetCapacity()
+	public double getCapacity()
 	{
 		return this.capacity;
 	}

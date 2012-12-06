@@ -1,4 +1,4 @@
-public class Seeder extends TraktorBase{
+public class Seeder extends TractorBase{
 
 	private int coulter;
 	
@@ -8,7 +8,7 @@ public class Seeder extends TraktorBase{
 		this.coulter = coulter;
 	}	
 	
-	public int GetCoulter()
+	public int getCoulter()
 	{
 		return coulter;
 	}	

@@ -9,13 +9,13 @@ public abstract class Engine {
 		this.totalConsumption = 0;
 	}
 	
-	public double UseEngine(int hours)
+	public double useEngine(int hours)
 	{
 		this.totalConsumption += this.consumptionPH * hours;
 		return this.totalConsumption;
 	}
 	
-	public double GetTotalConsumption()
+	public double getTotalConsumption()
 	{
 		return this.totalConsumption;
 	}
