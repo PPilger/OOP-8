@@ -68,7 +68,7 @@ public class Farm {
 		return roleAvg(new BioGasMerger());
 	}
 
-	public int minCoulterCount() {
+	public Map<Object, Integer> minCoulterCount() {
 		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
 			
 			@Override
@@ -77,10 +77,10 @@ public class Farm {
 			}
 		});
 		
-		return 0;
+		return foldFuels(cm);
 	}
 
-	public int maxCoulterCount() {
+	public Map<Object, Integer> maxCoulterCount() {
 		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
 			
 			@Override
@@ -88,11 +88,18 @@ public class Farm {
 				return Math.max(val1, val2);				
 			}
 		});
-		return 0;
+		
+		return foldFuels(cm);
 	}
 
-	public double avgCapacity() {
-		return 0;
+	public Map<Object, Double> avgCapacity() {
+		return fuelAvg(new CapacityMerger(new Combinator<Double, Double, Double>() {
+			
+			@Override
+			public Double combine(Double val1, Double val2) {
+				return val1 + val2;
+			}
+		}));
 	}
 
 }
