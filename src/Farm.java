@@ -42,7 +42,11 @@ public class Farm {
 		});
 	}
 
-	public Map<String, Double> avgOperatingHours() {
+	public Map<Object, Double> avgOperatingHours() {
+		
+		return roleAvg(new OperatingHoursMerger());
+		
+		/*
 		double sumSeeder = 0;
 		double sumFertilizer = 0;
 		int cntSeeder = 0;
@@ -68,6 +72,7 @@ public class Farm {
 		result.put("Fertilizer", sumFertilizer / cntFertilizer);
 
 		return result;
+		*/
 	}
 
 	public Map<Object, Double> avgDieselUsage() {
