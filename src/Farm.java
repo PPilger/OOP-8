@@ -1,6 +1,6 @@
 public class Farm {
 
-	private Map<Integer, Tractor> myTractors;// Todo: Pilgis Collection
+	private Map<Integer, Tractor> myTractors;
 	private final String name;
 
 	public Farm(String name) {
@@ -20,10 +20,56 @@ public class Farm {
 		myTractors.get(id);
 	}
 
+	public Map<Object, Double> avgOHPerRole() {
+		return roleAvg(new OperatingHoursMerger());
+	}
+
+	public Map<Object, Double> avgOHPerFuel() {
+		return fuelAvg(new OperatingHoursMerger());
+	}
+
+	public Map<Object, Double> avgDieselUsagePerRole() {
+		return roleAvg(new DieselMerger());
+	}
+
+	public Map<Object, Double> avgBioGasUsagePerRole() {
+		return roleAvg(new BioGasMerger());
+	}
+
+	public Map<Object, Integer> minCoultersPerFuel() {
+		CoulterMerger cm = new CoulterMerger(
+				new Combinator<Integer, Integer, Integer>() {
+
+					@Override
+					public Integer combine(Integer val1, Integer val2) {
+						return Math.min(val1, val2);
+					}
+				});
+
+		return foldFuels(cm);
+	}
+
+	public Map<Object, Integer> maxCoultersPerFuel() {
+		CoulterMerger cm = new CoulterMerger(
+				new Combinator<Integer, Integer, Integer>() {
+
+					@Override
+					public Integer combine(Integer val1, Integer val2) {
+						return Math.max(val1, val2);
+					}
+				});
+
+		return foldFuels(cm);
+	}
+
+	public Map<Object, Double> avgCapacityPerFuel() {
+		return fuelAvg(new CapacityMerger());
+	}
+
 	private <V> Map<Object, V> foldRoles(Merger<Tractor, V> folder) {
 		return myTractors.fold(new RoleDistributor<V>(folder));
 	}
-	
+
 	private <V> Map<Object, V> foldFuels(Merger<Tractor, V> folder) {
 		return myTractors.fold(new FuelDistributor<V>(folder));
 	}
@@ -35,7 +81,7 @@ public class Farm {
 
 		return avg(sum, count);
 	}
-	
+
 	private <V extends Number> Map<Object, Double> fuelAvg(
 			Merger<Tractor, V> comb) {
 		Map<Object, V> sum = foldFuels(comb);
@@ -44,8 +90,6 @@ public class Farm {
 		return avg(sum, count);
 	}
 
-	
-	
 	private <K, V extends Number> Map<K, Double> avg(Map<K, V> sum,
 			Map<K, Integer> count) {
 		return sum.zip(count, new Combinator<V, Integer, Double>() {
@@ -55,45 +99,4 @@ public class Farm {
 			}
 		});
 	}
-
-	public Map<Object, Double> avgOperatingHours() {
-		return roleAvg(new OperatingHoursMerger());
-	}
-
-	public Map<Object, Double> avgDieselUsage() {
-		return roleAvg(new DieselMerger());
-	}
-
-	public Map<Object, Double> avgBioGasUsage() {
-		return roleAvg(new BioGasMerger());
-	}
-
-	public Map<Object, Integer> minCoulterCount() {
-		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
-			
-			@Override
-			public Integer combine(Integer val1, Integer val2) {
-				return Math.min(val1, val2);				
-			}
-		});
-		
-		return foldFuels(cm);
-	}
-
-	public Map<Object, Integer> maxCoulterCount() {
-		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
-			
-			@Override
-			public Integer combine(Integer val1, Integer val2) {
-				return Math.max(val1, val2);				
-			}
-		});
-		
-		return foldFuels(cm);
-	}
-
-	public Map<Object, Double> avgCapacity() {
-		return fuelAvg(new CapacityMerger());
-	}
-
 }
