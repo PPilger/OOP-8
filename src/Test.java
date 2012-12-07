@@ -1,7 +1,8 @@
-//TODO: remove unused classes
+//TODO: tests erstellen
+//TODO: nicht verwendete Klassen und methoden entfernen
 //TODO: annotationen hinzufügen
 //TODO: generics entfernen
-//TODO: tests
+//TODO: tests nochmal durchfuehren
 public class Test {
 
 	/**
