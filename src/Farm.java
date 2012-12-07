@@ -93,13 +93,7 @@ public class Farm {
 	}
 
 	public Map<Object, Double> avgCapacity() {
-		return fuelAvg(new CapacityMerger(new Combinator<Double, Double, Double>() {
-			
-			@Override
-			public Double combine(Double val1, Double val2) {
-				return val1 + val2;
-			}
-		}));
+		return fuelAvg(new CapacityMerger());
 	}
 
 }
