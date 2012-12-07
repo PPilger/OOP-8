@@ -8,13 +8,19 @@ public class CapacityMerger implements Merger<Tractor, Double>{
 	
 	@Override
 	public Double initialValue() {
-		return 0.;
+		return null;
 	}
 
 	@Override
 	public Double merge(Tractor newElem, Double value) {
 		if(newElem.getRole().getClass() == Fertilizer.class)
+		{
+			if(value == null)
+			{
+				return newElem.getAttirbute().doubleValue();
+			}
 			return comb.combine(value, newElem.getAttirbute().doubleValue());
+		}
 		return value;
 	}
 

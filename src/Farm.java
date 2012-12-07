@@ -69,10 +69,25 @@ public class Farm {
 	}
 
 	public int minCoulterCount() {
+		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
+			
+			@Override
+			public Integer combine(Integer val1, Integer val2) {
+				return Math.min(val1, val2);				
+			}
+		});
+		
 		return 0;
 	}
 
 	public int maxCoulterCount() {
+		CoulterMerger cm = new CoulterMerger(new Combinator<Integer, Integer, Integer>() {
+			
+			@Override
+			public Integer combine(Integer val1, Integer val2) {
+				return Math.max(val1, val2);				
+			}
+		});
 		return 0;
 	}
 
