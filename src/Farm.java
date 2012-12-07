@@ -23,6 +23,10 @@ public class Farm {
 	private <V> Map<Object, V> foldRoles(Merger<Tractor, V> folder) {
 		return myTractors.fold(new RoleDistributor<V>(folder));
 	}
+	
+	private <V> Map<Object, V> foldFuels(Merger<Tractor, V> folder) {
+		return myTractors.fold(new FuelDistributor<V>(folder));
+	}
 
 	private <V extends Number> Map<Object, Double> roleAvg(
 			Merger<Tractor, V> comb) {
