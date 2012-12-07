@@ -22,7 +22,7 @@ public class Farm {
 		myTractors.get(id);
 	}
 
-	private void avg(Method identifier, Calc calc, Map<Object, Number> target) {
+	private void avg(Method identifier, Calc<? extends Number> calc, Map<Object, Number> target) {
 		Iterator<Tractor> it = myTractors.iterator();
 		Iterator<Object> keyIter;
 		Map<Object, Integer> counter = new Map<Object, Integer>();

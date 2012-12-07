@@ -1,5 +1,5 @@
 
-public interface Calc {
-	public Number inc(Number num, Tractor tr);
-	public Number avg(Number sum, Integer count);
+public interface Calc<T extends Number> {
+	public T inc(T num, Tractor tr);
+	public T avg(T sum, Integer count);
 }
