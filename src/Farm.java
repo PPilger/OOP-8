@@ -1,4 +1,3 @@
-
 public class Farm {
 
 	private Map<Integer, Tractor> myTractors;// Todo: Pilgis Collection
@@ -21,48 +20,58 @@ public class Farm {
 		myTractors.get(id);
 	}
 
-	private <I, T extends Number> void avg(ValueGetter<Tractor, I> identifier,
-			Calc<T> calc, Map<I, T> target) {
+	private <I, T> void fold(Identifier<Tractor, I> identifier,
+			Combinator<Tractor, T> comb, Map<I, T> target) {
 		Iterator<Tractor> it = myTractors.iterator();
 		Iterator<I> keyIter;
-		Map<I, Integer> counter = new Map<I, Integer>();
-
-		keyIter = target.keyIterator();
-		while (keyIter.hasNext()) {
-			I key = keyIter.next();
-			counter.put(key, 0);
-		}
 
 		while (it.hasNext()) {
 			Tractor tr = it.next();
-			I o = identifier.getValue(tr);
+			keyIter = target.keyIterator();
 
 			while (keyIter.hasNext()) {
 				I key = keyIter.next();
-				if (o.equals(key)) {
-					T sum = target.get(key);
-					Integer count = counter.get(key);
-
-					sum = calc.inc(sum, tr);
-					count++;
-
-					target.put(key, sum);
-					counter.put(key, count);
+				if (identifier.equals(tr, key)) {
+					T value = target.get(key);
+					value = comb.add(tr, value);
+					target.put(key, value);
 				}
 			}
 		}
+	}
 
-		keyIter = target.keyIterator();
-		while (keyIter.hasNext()) {
-			I key = keyIter.next();
+	private <T> Map<Object, T> foldRoles(Combinator<Tractor, T> comb,
+			T initValue) {
+		Map<Object, T> map = new Map<Object, T>();
+		map.put(Seeder.class, initValue);
+		map.put(Fertilizer.class, initValue);
+		map.put(null, initValue);
 
-			T sum = target.get(key);
-			Integer count = counter.get(key);
+		fold(new RoleIdentifier(), comb, map);
 
-			T avg = calc.avg(sum, count);
+		return map;
+	}
 
-			target.put(key, avg);
+	private <T extends Number> Map<Object, Double> roleAvg(Combinator<Tractor, T> comb, T initValue) {
+		Map<Object, T> sum = foldRoles(comb, initValue);
+		Map<Object, Integer> count = foldRoles(new CountCombinator<Tractor>(),
+				new Integer(0));
+
+		return avg(sum, count);
+	}
+
+	private <K, V1 extends Number, V2 extends Number> Map<K, Double> avg(
+			Map<K, V1> sum, Map<K, V2> count) {
+		Map<K, Double> avg = new Map<K, Double>();
+
+		Iterator<K> iter = sum.keyIterator();
+		while (iter.hasNext()) {
+			K key = iter.next();
+			avg.put(key, sum.get(key).doubleValue()
+					/ count.get(key).doubleValue());
 		}
+
+		return avg;
 	}
 
 	public Map<String, Double> avgOperatingHours() {
@@ -93,12 +102,12 @@ public class Farm {
 		return result;
 	}
 
-	public double avgDieselUsage() {
-		return 0;
+	public Map<Object, Double> avgDieselUsage() {
+		return roleAvg(new DieselCombinator(), new Integer(0));
 	}
 
-	public double avgBioGasUsage() {
-		return 0;
+	public Map<Object, Double> avgBioGasUsage() {
+		return roleAvg(new BioGasCombinator(), new Double(0));
 	}
 
 	public int minCoulterCount() {

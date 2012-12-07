@@ -1,6 +1,17 @@
-
 public class Map<K, V> {
 	private Node root;
+	
+	public Map() {
+	}
+	
+	public Map(Map<K, V> map) {
+		Iterator<Node> iter = nodeIterator();
+		
+		while(iter.hasNext()) {
+			Node node = iter.next();
+			put(node.key, node.value);
+		}
+	}
 
 	public void put(K key, V value) {
 		Node node = getNode(key);
@@ -102,7 +113,10 @@ public class Map<K, V> {
 		while (iter.hasNext()) {
 			Node node = iter.next();
 
-			if (node.key.equals(key)) {
+			if (node.key == key) {
+				return node;
+			}
+			if (node.key != null && node.key.equals(key)) {
 				return node;
 			}
 		}
