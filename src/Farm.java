@@ -35,7 +35,17 @@ public class Farm {
 
 		return avg(sum, count);
 	}
+	
+	private <V extends Number> Map<Object, Double> fuelAvg(
+			Merger<Tractor, V> comb) {
+		Map<Object, V> sum = foldFuels(comb);
+		Map<Object, Integer> count = foldFuels(new CountFolder<Tractor>());
 
+		return avg(sum, count);
+	}
+
+	
+	
 	private <K, V extends Number> Map<K, Double> avg(Map<K, V> sum,
 			Map<K, Integer> count) {
 		return sum.zip(count, new Combinator<V, Integer, Double>() {
@@ -47,36 +57,7 @@ public class Farm {
 	}
 
 	public Map<Object, Double> avgOperatingHours() {
-		
 		return roleAvg(new OperatingHoursMerger());
-		
-		/*
-		double sumSeeder = 0;
-		double sumFertilizer = 0;
-		int cntSeeder = 0;
-		int cntFertilizer = 0;
-
-		Iterator<Tractor> it = myTractors.iterator();
-
-		while (it.hasNext()) {
-			Tractor tr = it.next();
-			if (tr.getRole().getClass() == Seeder.class) {
-				sumSeeder += tr.getOperatingHours();
-				cntSeeder += 1;
-			} else if (tr.getRole().getClass() == Fertilizer.class) {
-				sumFertilizer += tr.getOperatingHours();
-				cntFertilizer += 1;
-			}
-		}
-
-		Map<String, Double> result = new Map<String, Double>();
-		result.put("All",
-				((sumSeeder + sumFertilizer) / (cntSeeder + cntFertilizer)));
-		result.put("Seeder", sumSeeder / cntSeeder);
-		result.put("Fertilizer", sumFertilizer / cntFertilizer);
-
-		return result;
-		*/
 	}
 
 	public Map<Object, Double> avgDieselUsage() {
