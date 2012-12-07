@@ -31,13 +31,13 @@ public class Farm {
 		return aggregator.getAggregation();
 	}
 
-	private <T> Map<Object, T> foldRoles(Combinator<Tractor, T> comb) {
-		return fold(new RoleAggregator<T>(comb));
+	private <V> Map<Object, V> foldRoles(Combinator<Tractor, V> comb) {
+		return fold(new RoleAggregator<V>(comb));
 	}
 
-	private <T extends Number> Map<Object, Double> roleAvg(
-			Combinator<Tractor, T> comb) {
-		Map<Object, T> sum = foldRoles(comb);
+	private <V extends Number> Map<Object, Double> roleAvg(
+			Combinator<Tractor, V> comb) {
+		Map<Object, V> sum = foldRoles(comb);
 		Map<Object, Integer> count = foldRoles(new CountCombinator<Tractor>());
 
 		return avg(sum, count);
