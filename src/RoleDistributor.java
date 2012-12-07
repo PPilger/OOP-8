@@ -1,6 +1,6 @@
-public class RoleAggregator<V> extends Aggregator<Tractor, Object, V> {
+public class RoleDistributor<V> extends Distributor<Tractor, Object, V> {
 
-	public RoleAggregator(Combinator<Tractor, V> comb) {
+	public RoleDistributor(Merger<Tractor, V> comb) {
 		super(comb);
 		
 		addType(Seeder.class);

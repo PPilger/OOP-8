@@ -1,13 +1,13 @@
 public class Map<K, V> {
 	private Node root;
-	
+
 	public Map() {
 	}
-	
+
 	public Map(Map<K, V> map) {
 		Iterator<Node> iter = nodeIterator();
-		
-		while(iter.hasNext()) {
+
+		while (iter.hasNext()) {
 			Node node = iter.next();
 			put(node.key, node.value);
 		}
@@ -58,6 +58,30 @@ public class Map<K, V> {
 		if (node.next != null) {
 			node.next.prev = node.prev;
 		}
+	}
+
+	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
+		Iterator<V> it = iterator();
+
+		while (it.hasNext()) {
+			V element = it.next();
+			aggregator.add(element);
+		}
+
+		return aggregator.getDistribution();
+	}
+
+	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
+		Map<K, R> combined = new Map<K, R>();
+
+		Iterator<K> iter = keyIterator();
+		while (iter.hasNext()) {
+			K key = iter.next();
+			R result = comb.combine(get(key), other.get(key));
+			combined.put(key, result);
+		}
+
+		return combined;
 	}
 
 	public Iterator<V> iterator() {

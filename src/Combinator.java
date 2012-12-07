@@ -1,5 +1,4 @@
 
-public interface Combinator<T, U> {
-	public U initialValue();
-	public U add(T num1, U num2);
+public interface Combinator<V1, V2, R> {
+	public R combine(V1 val1, V2 val2);
 }

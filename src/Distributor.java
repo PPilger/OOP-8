@@ -1,8 +1,8 @@
-public abstract class Aggregator<T, K, V> {
+public abstract class Distributor<T, K, V> {
 	private Map<K, V> map = new Map<K, V>();
-	private Combinator<T, V> comb;
+	private Merger<T, V> comb;
 
-	public Aggregator(Combinator<T, V> comb) {
+	public Distributor(Merger<T, V> comb) {
 		this.comb = comb;
 	}
 	
@@ -19,14 +19,14 @@ public abstract class Aggregator<T, K, V> {
 			if (fitsKey(obj, key)) {
 				V value = map.get(key);
 
-				value = comb.add(obj, value);
+				value = comb.merge(obj, value);
 
 				map.put(key, value);
 			}
 		}
 	}
 	
-	public Map<K, V> getAggregation() {
+	public Map<K, V> getDistribution() {
 		return map;
 	}
 

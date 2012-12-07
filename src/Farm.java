@@ -20,41 +20,26 @@ public class Farm {
 		myTractors.get(id);
 	}
 
-	private <K, V> Map<K, V> fold(Aggregator<Tractor, K, V> aggregator) {
-		Iterator<Tractor> it = myTractors.iterator();
-
-		while (it.hasNext()) {
-			Tractor tractor = it.next();
-			aggregator.add(tractor);
-		}
-
-		return aggregator.getAggregation();
-	}
-
-	private <V> Map<Object, V> foldRoles(Combinator<Tractor, V> comb) {
-		return fold(new RoleAggregator<V>(comb));
+	private <V> Map<Object, V> foldRoles(Merger<Tractor, V> folder) {
+		return myTractors.fold(new RoleDistributor<V>(folder));
 	}
 
 	private <V extends Number> Map<Object, Double> roleAvg(
-			Combinator<Tractor, V> comb) {
+			Merger<Tractor, V> comb) {
 		Map<Object, V> sum = foldRoles(comb);
-		Map<Object, Integer> count = foldRoles(new CountCombinator<Tractor>());
+		Map<Object, Integer> count = foldRoles(new CountFolder<Tractor>());
 
 		return avg(sum, count);
 	}
 
 	private <K, V extends Number> Map<K, Double> avg(Map<K, V> sum,
 			Map<K, Integer> count) {
-		Map<K, Double> avg = new Map<K, Double>();
-		
-		Iterator<K> iter = sum.keyIterator();
-		while (iter.hasNext()) {
-			K key = iter.next();
-			avg.put(key, sum.get(key).doubleValue()
-					/ count.get(key).doubleValue());
-		}
-
-		return avg;
+		return sum.zip(count, new Combinator<V, Integer, Double>() {
+			@Override
+			public Double combine(V sum, Integer count) {
+				return sum.doubleValue() / count.doubleValue();
+			}
+		});
 	}
 
 	public Map<String, Double> avgOperatingHours() {
@@ -86,11 +71,11 @@ public class Farm {
 	}
 
 	public Map<Object, Double> avgDieselUsage() {
-		return roleAvg(new DieselCombinator());
+		return roleAvg(new DieselMerger());
 	}
 
 	public Map<Object, Double> avgBioGasUsage() {
-		return roleAvg(new BioGasCombinator());
+		return roleAvg(new BioGasMerger());
 	}
 
 	public int minCoulterCount() {
