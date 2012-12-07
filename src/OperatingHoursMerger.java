@@ -10,7 +10,7 @@ public class OperatingHoursMerger implements Merger<Tractor, Integer> {
 	public Integer merge(Tractor newElem, Integer value) {
 		
 		int hours = newElem.getOperatingHours();		
-		return hours;
+		return hours + value;
 		
 	}
 
