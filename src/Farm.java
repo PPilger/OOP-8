@@ -20,50 +20,33 @@ public class Farm {
 		myTractors.get(id);
 	}
 
-	private <I, T> void fold(Identifier<Tractor, I> identifier,
-			Combinator<Tractor, T> comb, Map<I, T> target) {
+	private <K, V> Map<K, V> fold(Aggregator<Tractor, K, V> aggregator) {
 		Iterator<Tractor> it = myTractors.iterator();
-		Iterator<I> keyIter;
 
 		while (it.hasNext()) {
-			Tractor tr = it.next();
-			keyIter = target.keyIterator();
-
-			while (keyIter.hasNext()) {
-				I key = keyIter.next();
-				if (identifier.equals(tr, key)) {
-					T value = target.get(key);
-					value = comb.add(tr, value);
-					target.put(key, value);
-				}
-			}
+			Tractor tractor = it.next();
+			aggregator.add(tractor);
 		}
+
+		return aggregator.getAggregation();
 	}
 
-	private <T> Map<Object, T> foldRoles(Combinator<Tractor, T> comb,
-			T initValue) {
-		Map<Object, T> map = new Map<Object, T>();
-		map.put(Seeder.class, initValue);
-		map.put(Fertilizer.class, initValue);
-		map.put(null, initValue);
-
-		fold(new RoleIdentifier(), comb, map);
-
-		return map;
+	private <T> Map<Object, T> foldRoles(Combinator<Tractor, T> comb) {
+		return fold(new RoleAggregator<T>(comb));
 	}
 
-	private <T extends Number> Map<Object, Double> roleAvg(Combinator<Tractor, T> comb, T initValue) {
-		Map<Object, T> sum = foldRoles(comb, initValue);
-		Map<Object, Integer> count = foldRoles(new CountCombinator<Tractor>(),
-				new Integer(0));
+	private <T extends Number> Map<Object, Double> roleAvg(
+			Combinator<Tractor, T> comb) {
+		Map<Object, T> sum = foldRoles(comb);
+		Map<Object, Integer> count = foldRoles(new CountCombinator<Tractor>());
 
 		return avg(sum, count);
 	}
 
-	private <K, V1 extends Number, V2 extends Number> Map<K, Double> avg(
-			Map<K, V1> sum, Map<K, V2> count) {
+	private <K, V extends Number> Map<K, Double> avg(Map<K, V> sum,
+			Map<K, Integer> count) {
 		Map<K, Double> avg = new Map<K, Double>();
-
+		
 		Iterator<K> iter = sum.keyIterator();
 		while (iter.hasNext()) {
 			K key = iter.next();
@@ -103,11 +86,11 @@ public class Farm {
 	}
 
 	public Map<Object, Double> avgDieselUsage() {
-		return roleAvg(new DieselCombinator(), new Integer(0));
+		return roleAvg(new DieselCombinator());
 	}
 
 	public Map<Object, Double> avgBioGasUsage() {
-		return roleAvg(new BioGasCombinator(), new Double(0));
+		return roleAvg(new BioGasCombinator());
 	}
 
 	public int minCoulterCount() {
