@@ -1,3 +1,4 @@
+
 public class Map<K, V> {
 	private Node root;
 
@@ -5,8 +6,10 @@ public class Map<K, V> {
 		Node node = getNode(key);
 
 		if (node != null) {
+			// alter existing node
 			node.value = value;
 		} else {
+			// insert new node
 			Node newNode = new Node(key, value);
 
 			newNode.next = root;
@@ -47,57 +50,45 @@ public class Map<K, V> {
 	}
 
 	public Iterator<V> iterator() {
-		return iterator(new Filter<V>() {
+		return new MapIterator<V>(new ValueGetter<Node, V>() {
 			@Override
-			public boolean accept(V element) {
-				return true;
+			public V getValue(Node obj) {
+				return obj.value;
 			}
 		});
 	}
 
-	public Iterator<V> iterator(final Filter<V> filter) {
-		return new Iterator<V>() {
-			Node next = root;
-
+	public Iterator<K> keyIterator() {
+		return new MapIterator<K>(new ValueGetter<Node, K>() {
 			@Override
-			public boolean hasNext() {
-				return next != null;
+			public K getValue(Node obj) {
+				return obj.key;
 			}
+		});
+	}
 
+	private Iterator<Node> nodeIterator() {
+		return new MapIterator<Node>(new ValueGetter<Node, Node>() {
 			@Override
-			public V next() {
-				V value = next.value;
-
-				while (next != null && !filter.accept(next.value)) {
-					next = next.next;
-				}
-
-				return value;
+			public Node getValue(Node obj) {
+				return obj;
 			}
-		};
+		});
 	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		Node node = root;
+		Iterator<Node> iter = nodeIterator();
 
 		sb.append("[");
 
-		if (node != null) {
-			sb.append(node.key);
-			sb.append(": ");
-			sb.append(node.value);
-
-			node = node.next;
+		if (iter.hasNext()) {
+			sb.append(iter.next());
 		}
 
-		while (node != null) {
+		while (iter.hasNext()) {
 			sb.append(", ");
-			sb.append(node.key);
-			sb.append(": ");
-			sb.append(node.value);
-
-			node = node.next;
+			sb.append(iter.next());
 		}
 
 		sb.append("]");
@@ -106,7 +97,11 @@ public class Map<K, V> {
 	}
 
 	private Node getNode(K key) {
-		for (Node node = root; node != null; node = node.next) {
+		Iterator<Node> iter = nodeIterator();
+
+		while (iter.hasNext()) {
+			Node node = iter.next();
+
 			if (node.key.equals(key)) {
 				return node;
 			}
@@ -124,6 +119,33 @@ public class Map<K, V> {
 		private Node(K key, V value) {
 			this.key = key;
 			this.value = value;
+		}
+
+		@Override
+		public String toString() {
+			return key + ": " + value;
+		}
+	}
+
+	private class MapIterator<T> implements Iterator<T> {
+		private Node next = root;
+		private ValueGetter<Node, T> valGetter;
+
+		private MapIterator(ValueGetter<Node, T> valGetter) {
+			this.valGetter = valGetter;
+		}
+
+		@Override
+		public boolean hasNext() {
+			return next != null;
+		}
+
+		@Override
+		public T next() {
+			T value = valGetter.getValue(next);
+			next = next.next;
+
+			return value;
 		}
 	}
 }

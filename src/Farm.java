@@ -1,4 +1,3 @@
-import java.lang.reflect.Method;
 
 public class Farm {
 
@@ -22,25 +21,26 @@ public class Farm {
 		myTractors.get(id);
 	}
 
-	private void avg(Method identifier, Calc<? extends Number> calc, Map<Object, Number> target) {
+	private <I, T extends Number> void avg(ValueGetter<Tractor, I> identifier,
+			Calc<T> calc, Map<I, T> target) {
 		Iterator<Tractor> it = myTractors.iterator();
-		Iterator<Object> keyIter;
-		Map<Object, Integer> counter = new Map<Object, Integer>();
+		Iterator<I> keyIter;
+		Map<I, Integer> counter = new Map<I, Integer>();
 
 		keyIter = target.keyIterator();
 		while (keyIter.hasNext()) {
-			Object key = keyIter.next();
+			I key = keyIter.next();
 			counter.put(key, 0);
 		}
 
 		while (it.hasNext()) {
 			Tractor tr = it.next();
-			Object o = m.invoke(tr);
+			I o = identifier.getValue(tr);
 
 			while (keyIter.hasNext()) {
-				Object key = keyIter.next();
-				if (o == key) {
-					Number sum = target.get(key);
+				I key = keyIter.next();
+				if (o.equals(key)) {
+					T sum = target.get(key);
 					Integer count = counter.get(key);
 
 					sum = calc.inc(sum, tr);
@@ -54,12 +54,12 @@ public class Farm {
 
 		keyIter = target.keyIterator();
 		while (keyIter.hasNext()) {
-			Object key = keyIter.next();
+			I key = keyIter.next();
 
-			Number sum = target.get(key);
+			T sum = target.get(key);
 			Integer count = counter.get(key);
 
-			Number avg = calc.avg(sum, count);
+			T avg = calc.avg(sum, count);
 
 			target.put(key, avg);
 		}
