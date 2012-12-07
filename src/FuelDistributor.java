@@ -9,7 +9,7 @@ public class FuelDistributor<V> extends Distributor<Tractor, Object, V>{
 
 	@Override
 	protected boolean fitsKey(Tractor obj, Object fuel) {
-		return obj.getClass() == fuel;
+		return obj.getFuel().getClass() == fuel;
 	}
 
 }
