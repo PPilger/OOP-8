@@ -1,3 +1,9 @@
+@AnClass (author="Pilgerstorfer Peter",
+describtion="A map which offers iterators (that return values and keys of the map), " +
+		"folding (retrieves multiple sets out of this map, each set contains a numerical " +
+		"result depending on the charasteristics of the values in this map)" +
+		"zip (combines this map with another one, keys will be a union of both maps although" +
+		"the mapped values will be combined and shall be different if the same key exists in both maps)")
 public class Map<K, V> {
 	private Node root;
 
