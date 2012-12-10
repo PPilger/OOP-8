@@ -1,5 +1,6 @@
 import java.lang.reflect.Method;
-@Author ("Pilgerstorfer Peter")
+
+@Author("Pilgerstorfer Peter")
 /*
  * In this class a tractor is discribed.
  */
@@ -10,48 +11,55 @@ public class Tractor<F extends Fuel<T>, T extends Number> {
 	private int operatingHours;
 	private TractorRole role;
 
+	@Author("Pilgerstorfer Peter")
 	public Tractor() {
 		this.id = idCounter;
 		idCounter++;
 	}
 
-	public int getID()
-	{
+	@Author("Pilgerstorfer Peter")
+	public int getID() {
 		return this.id;
 	}
-	
-	public TractorRole getRole()
-	{
+
+	@Author("Pilgerstorfer Peter")
+	public TractorRole getRole() {
 		return this.role;
 	}
-	
-	public Fuel getFuel()
-	{
+
+	@Author("Pilgerstorfer Peter")
+	public Fuel getFuel() {
 		return this.totalConsumption;
 	}
-	
+
+	@Author("Pilgerstorfer Peter")
 	public void incOperatingHours(int amount) {
 		if (amount > 0) {
 			operatingHours += amount;
 		}
 	}
 
+	@Author("Pilgerstorfer Peter")
 	public int getOperatingHours() {
 		return operatingHours;
 	}
-	
+
+	@Author("Pilgerstorfer Peter")
 	public void incConsumption(T fuelAmount) {
 		totalConsumption.incAmount(fuelAmount);
 	}
-	
+
+	@Author("Pilgerstorfer Peter")
 	public T getConsumption() {
 		return totalConsumption.getAmount();
 	}
-	
+
+	@Author("Pilgerstorfer Peter")
 	public void changeRole(TractorRole newRole) {
 		role = newRole;
 	}
-	
+
+	@Author("Pilgerstorfer Peter")
 	public Number getAttirbute() {
 		return role.getAttribute();
 	}
