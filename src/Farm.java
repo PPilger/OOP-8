@@ -5,9 +5,8 @@
  * the tractors and the average of the consumption, ...
  */
 public class Farm {
-
-	private Map<Integer, Tractor> myTractors;
 	private final String name;
+	private Map<Integer, Tractor> myTractors;
 
 	@Author("Kletzander Christian")
 	public Farm(String name) {
@@ -19,20 +18,10 @@ public class Farm {
 	public void addTractor(Tractor tr) {
 		this.myTractors.put(tr.getID(), tr);
 	}
-	
-	public String getName()
-	{
+
+	@Author("Koegler Alexander")
+	public String getName() {
 		return name;
-	}
-	
-	public String toString() {
-		Iterator it = myTractors.iterator();
-		StringBuilder sb = new StringBuilder();
-		while(it.hasNext()) {
-			sb.append(it.next().toString() + "\n");
-		}
-	
-		return sb.toString();
 	}
 
 	@Author("Kšgler Alexander")
@@ -135,5 +124,20 @@ public class Farm {
 				return sum.doubleValue() / count.doubleValue();
 			}
 		});
+	}
+
+	@Override
+	@Author("Kletzander Christian")
+	public String toString() {
+		Iterator<Tractor> it = myTractors.iterator();
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(name + ":\n");
+
+		while (it.hasNext()) {
+			sb.append(it.next().toString() + "\n");
+		}
+
+		return sb.toString();
 	}
 }
