@@ -1,5 +1,8 @@
 import java.lang.reflect.Method;
-
+@Author ("Pilgerstorfer Peter")
+/*
+ * In this class a tractor is discribed.
+ */
 public class Tractor<F extends Fuel<T>, T extends Number> {
 	private static int idCounter = 0;
 	private final int id;

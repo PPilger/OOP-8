@@ -1,7 +1,10 @@
-@Author (value="Kletzander Christian", describtion="Distributes values to Seeder, Fertilizer and all tractors")
+@Author ("Kletzander Christian")
+/*
+ * Distributes values to Seeder, Fertilizer and all tractors
+ */
 public class RoleDistributor<V> extends Distributor<Tractor, Object, V> {
 
-	@Author (value="Kletzander Christian")
+	@Author ("Kletzander Christian")
 	public RoleDistributor(Merger<Tractor, V> comb) {
 		super(comb);
 		
@@ -11,7 +14,7 @@ public class RoleDistributor<V> extends Distributor<Tractor, Object, V> {
 	}
 
 	@Override
-	@Author (value="Kletzander Christian")
+	@Author ("Kletzander Christian")
 	protected boolean fitsKey(Tractor tractor, Object roleType) {
 		return roleType == null || tractor.getRole().getClass() == roleType;
 	}

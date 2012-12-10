@@ -1,5 +1,7 @@
-@Author (value="Pilgerstorfer Peter", 
-describtion="Merges a value of Type V with a corresponding value of Object T")
+@Author ("Pilgerstorfer Peter")
+/*
+ * Merges a value of Type V with a corresponding value of Object T
+ */
 public interface Merger<T, V> {
 	
 	/**
