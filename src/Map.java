@@ -6,13 +6,11 @@ public class Map<K, V> {
 	private Node root; // root of the linked list
 
 	@Author("Peter Pilgerstorfer")
-	public Map() {
-	}
-
-	@Author("Peter Pilgerstorfer")
 	/**
 	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise the existing value is replaced
 	 * by the new one.
+	 * 
+	 * key may be null.
 	 */
 	public void put(K key, V value) {
 		Node node = getNode(key);
@@ -80,6 +78,8 @@ public class Map<K, V> {
 	 * different elements.
 	 * 
 	 * The returned Map has the type stored as key with the respective folded value.
+	 * 
+	 * @param aggregator must not be null
 	 */
 	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
 		Iterator<V> it = iterator();
@@ -96,9 +96,12 @@ public class Map<K, V> {
 	/**
 	 * Performs a zip operation on the two maps (this and other) with the specified Combinator.
 	 * 
-	 * Precondition: This map contains the same keys as other.
+	 * This map must contain the same keys as other.
 	 * 
-	 * Postcondition: The returned map contains every key of this with the values of this map and other combined.
+	 * The returned map contains every key with the values of this and other combined.
+	 * 
+	 * @param other must not be null
+	 * @param comb must not be null
 	 */
 	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
 		Map<K, R> combined = new Map<K, R>();
@@ -230,6 +233,8 @@ public class Map<K, V> {
 		/**
 		 * Creates a new MapIterator that iterates over the desired attributes.
 		 * The specified ValueGetter returns the desired attribute of a Node object.
+		 * 
+		 * @param valGetter must not be null
 		 */
 		private MapIterator(ValueGetter<Node, T> valGetter) {
 			this.valGetter = valGetter;
