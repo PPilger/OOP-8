@@ -3,16 +3,7 @@
  * Implements a Diesel-Fuel which uses Integer-Type for calculations
  */
 public class Diesel implements Fuel<Integer> {
-	private int liter;
-
-	/**
-	 * @param liter
-	 *            Initial amount of consumed fuelin liters
-	 */
-	@Author("Koegler Alexander")
-	public Diesel(int liter) {
-		this.liter = liter;
-	}
+	private int liter = 0;
 
 	@Override
 	@Author("Koegler Alexander")

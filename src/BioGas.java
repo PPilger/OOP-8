@@ -3,17 +3,7 @@
  * Implements a BioGas-Fuel that uses Double-Type for calculations.
  */
 public class BioGas implements Fuel<Double> {
-
-	private double gallons;
-
-	/**
-	 * @param gallons
-	 *            Initial amount of consumed fuel in kubic-meters
-	 */
-	@Author("Koegler Alexander")
-	public BioGas(double gallons) {
-		this.gallons = gallons;
-	}
+	private double gallons = 0;
 
 	@Override
 	@Author("Koegler Alexander")

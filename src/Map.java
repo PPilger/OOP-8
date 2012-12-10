@@ -1,43 +1,33 @@
 @Author("Peter Pilgerstorfer")
-/*
- * A map which offers iterators (that return values and keys of the map),
- * folding (retrieves multiple sets out of this map, each set contains a
- * numerical result depending on the charasteristics of the values in this map)
- * zip (combines this map with another one, keys will be a union of both maps
- * although the mapped values will be combined and shall be different if the
- * same key exists in both maps)
+/**
+ * Represents a map of key-value pairs. The key of every element is unique and may be null.
  */
 public class Map<K, V> {
-	private Node root;
+	private Node root; // root of the linked list
 
 	@Author("Peter Pilgerstorfer")
 	public Map() {
 	}
 
 	@Author("Peter Pilgerstorfer")
-	public Map(Map<K, V> map) {
-		Iterator<Node> iter = nodeIterator();
-
-		while (iter.hasNext()) {
-			Node node = iter.next();
-			put(node.key, node.value);
-		}
-	}
-
-	@Author("Peter Pilgerstorfer")
+	/**
+	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise the existing value is replaced by the new one.
+	 */
 	public void put(K key, V value) {
 		Node node = getNode(key);
 
 		if (node != null) {
-			// alter existing node
+			// the key already exists
 			node.value = value;
 		} else {
-			// insert new node
+			// the key doesn't exist
 			Node newNode = new Node(key, value);
 
+			// set next references
 			newNode.next = root;
 			root = newNode;
 
+			// set previous references
 			if (newNode.next != null) {
 				newNode.next.prev = newNode;
 			}
@@ -45,6 +35,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Returns the value of the element with the specified key. If there is no such element, null is returned.
+	 */
 	public V get(K key) {
 		Node node = getNode(key);
 
@@ -56,6 +49,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Removes the element with the specified key. If there is no such element, nothing is changed.
+	 */
 	public void remove(K key) {
 		Node node = getNode(key);
 
@@ -63,18 +59,25 @@ public class Map<K, V> {
 			return;
 		}
 
+		// set next reference of the predecessor to skip the node.
 		if (node.prev == null) {
 			root = node.next;
 		} else {
 			node.prev.next = node.next;
 		}
 
+		// set the previous reference of the successor to skip the node
 		if (node.next != null) {
 			node.next.prev = node.prev;
 		}
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Performs a special fold operation on the map. Several folds can be done at once for different types. The Distributor distributes the value of an element to the concerned types, so every type can fold different elements.
+	 * 
+	 * The returned Map has the type stored as key with the respective folded value.
+	 */
 	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
 		Iterator<V> it = iterator();
 
@@ -87,6 +90,13 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Performs a zip operation on the two maps (this and other) with the specified Combinator.
+	 * 
+	 * Precondition: This map contains the same keys as other.
+	 * 
+	 * Postcondition: The returned map contains every key of this with the values of this map and other combined.
+	 */
 	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
 		Map<K, R> combined = new Map<K, R>();
 
@@ -101,6 +111,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Returns an iterator that iterates through the values of the map.
+	 */
 	public Iterator<V> iterator() {
 		return new MapIterator<V>(new ValueGetter<Node, V>() {
 			@Override
@@ -111,6 +124,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Returns an iterator that iterates through the keys of the map.
+	 */
 	public Iterator<K> keyIterator() {
 		return new MapIterator<K>(new ValueGetter<Node, K>() {
 			@Override
@@ -121,6 +137,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Returns an iterator that iterates through the nodes of the map.
+	 */
 	private Iterator<Node> nodeIterator() {
 		return new MapIterator<Node>(new ValueGetter<Node, Node>() {
 			@Override
