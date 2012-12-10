@@ -11,7 +11,8 @@ public class Map<K, V> {
 
 	@Author("Peter Pilgerstorfer")
 	/**
-	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise the existing value is replaced by the new one.
+	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise the existing value is replaced
+	 * by the new one.
 	 */
 	public void put(K key, V value) {
 		Node node = getNode(key);
@@ -74,7 +75,9 @@ public class Map<K, V> {
 
 	@Author("Peter Pilgerstorfer")
 	/**
-	 * Performs a special fold operation on the map. Several folds can be done at once for different types. The Distributor distributes the value of an element to the concerned types, so every type can fold different elements.
+	 * Performs a special fold operation on the map. Several folds can be done at once for different types.
+	 * The Distributor distributes the value of an element to the concerned types,so every type can fold
+	 * different elements.
 	 * 
 	 * The returned Map has the type stored as key with the respective folded value.
 	 */
@@ -171,6 +174,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Returns the node with the specified key or null if such a node doesn't exist.
+	 */
 	private Node getNode(K key) {
 		Iterator<Node> iter = nodeIterator();
 
@@ -189,6 +195,9 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Represents a node of a double linked list that stores key-value pairs.
+	 */
 	private class Node {
 		private K key;
 		private V value;
@@ -209,25 +218,44 @@ public class Map<K, V> {
 	}
 
 	@Author("Peter Pilgerstorfer")
+	/**
+	 * Represents an Iterator that iterates over the map. The returned attribute can be specified 
+	 * by a ValueGetter (get the desired attribute of a Node object).
+	 */
 	private class MapIterator<T> implements Iterator<T> {
 		private Node next = root;
 		private ValueGetter<Node, T> valGetter;
 
 		@Author("Peter Pilgerstorfer")
+		/**
+		 * Creates a new MapIterator that iterates over the desired attributes.
+		 * The specified ValueGetter returns the desired attribute of a Node object.
+		 */
 		private MapIterator(ValueGetter<Node, T> valGetter) {
 			this.valGetter = valGetter;
 		}
 
 		@Override
 		@Author("Peter Pilgerstorfer")
+		/**
+		 * Returns true if there are more elements to read and false otherwise.
+		 */
 		public boolean hasNext() {
 			return next != null;
 		}
 
 		@Override
 		@Author("Peter Pilgerstorfer")
+		/**
+		 * Returns the next element. If there is no next element (hasNext() == false), null is returned.
+		 */
 		public T next() {
 			T value = valGetter.getValue(next);
+
+			if (next == null) {
+				return null;
+			}
+
 			next = next.next;
 
 			return value;
