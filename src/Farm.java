@@ -24,6 +24,16 @@ public class Farm {
 	{
 		return name;
 	}
+	
+	public String toString() {
+		Iterator it = myTractors.iterator();
+		StringBuilder sb = new StringBuilder();
+		while(it.hasNext()) {
+			sb.append(it.next().toString() + "\n");
+		}
+	
+		return sb.toString();
+	}
 
 	@Author("Kšgler Alexander")
 	public void removeTractor(int id) {
