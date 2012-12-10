@@ -1,5 +1,3 @@
-import java.lang.reflect.Method;
-
 @Author("Pilgerstorfer Peter")
 /*
  * In this class a tractor is discribed.
@@ -9,12 +7,11 @@ public class Tractor<F extends Fuel<T>, T extends Number> {
 	private F totalConsumption;
 	private int operatingHours;
 	private TractorRole role;
-	private F fuel;
 
 	@Author("Kletzander Christian")
-	public Tractor(int id, F fuel, TractorRole role) {
+	public Tractor(int id, F totalConsumption, TractorRole role) {
 		this.id = id;
-		this.fuel = fuel;
+		this.totalConsumption = totalConsumption;
 		this.role = role;
 	}
 
@@ -63,5 +60,12 @@ public class Tractor<F extends Fuel<T>, T extends Number> {
 	@Author("Pilgerstorfer Peter")
 	public Number getAttirbute() {
 		return role.getAttribute();
+	}
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public String toString() {
+		return role + " #" + id + ": " + operatingHours + " h, "
+				+ totalConsumption;
 	}
 }

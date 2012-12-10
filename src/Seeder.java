@@ -1,4 +1,4 @@
-@Author ("Kletzander Christian")
+@Author("Kletzander Christian")
 /*
  * A seeder's equiped with an integer amount of sowing coulters
  */
@@ -6,9 +6,10 @@ public class Seeder implements TractorRole {
 	private int coulter;
 
 	/**
-	 * @param coulter amount of sowing coulters
+	 * @param coulter
+	 *            amount of sowing coulters
 	 */
-	@Author ("Kletzander Christian")
+	@Author("Kletzander Christian")
 	public Seeder(int coulter) {
 		this.coulter = coulter;
 	}
@@ -17,8 +18,14 @@ public class Seeder implements TractorRole {
 	 * @return amount of sowing coulters
 	 */
 	@Override
-	@Author ("Kletzander Christian")
+	@Author("Kletzander Christian")
 	public Integer getAttribute() {
 		return coulter;
+	}
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public String toString() {
+		return "Seeder (" + coulter + " coulters)";
 	}
 }

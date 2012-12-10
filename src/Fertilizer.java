@@ -23,4 +23,10 @@ public class Fertilizer implements TractorRole {
 	public Double getAttribute() {
 		return capacity;
 	}
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public String toString() {
+		return "Fertilizer (" + capacity + " l)";
+	}
 }

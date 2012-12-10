@@ -16,4 +16,10 @@ public class Diesel implements Fuel<Integer> {
 	public void incAmount(Integer amount) {
 		liter += amount;
 	}
+	
+	@Override
+	@Author ("Peter Pilgerstorfer")
+	public String toString() {
+		return liter + " l";
+	}
 }
