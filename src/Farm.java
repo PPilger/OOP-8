@@ -11,6 +11,11 @@ public class Farm {
 	public void addTractor(Tractor tr) {
 		this.myTractors.put(tr.getID(), tr);
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
 
 	public void removeTractor(int id) {
 		myTractors.remove(id);
