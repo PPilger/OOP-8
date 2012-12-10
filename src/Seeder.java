@@ -1,4 +1,4 @@
-@AnClass (author="Kletzander Christian",
+@Author (value="Kletzander Christian",
 describtion="A seeder's equiped with an integer amount of sowing coulters")
 public class Seeder implements TractorRole {
 	private int coulter;
@@ -6,7 +6,7 @@ public class Seeder implements TractorRole {
 	/**
 	 * @param coulter amount of sowing coulters
 	 */
-	@AnClass (author="Kletzander Christian")
+	@Author (value="Kletzander Christian")
 	public Seeder(int coulter) {
 		this.coulter = coulter;
 	}
@@ -15,7 +15,7 @@ public class Seeder implements TractorRole {
 	 * @return amount of sowing coulters
 	 */
 	@Override
-	@AnClass (author="Kletzander Christian")
+	@Author (value="Kletzander Christian")
 	public Integer getAttribute() {
 		return coulter;
 	}

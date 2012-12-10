@@ -1,4 +1,4 @@
-@AnClass (author="Pilgerstorfer Peter",
+@Author (value="Pilgerstorfer Peter",
 describtion="A map which offers iterators (that return values and keys of the map), " +
 		"folding (retrieves multiple sets out of this map, each set contains a numerical " +
 		"result depending on the charasteristics of the values in this map)" +
