@@ -5,16 +5,17 @@ import java.lang.reflect.Method;
  * In this class a tractor is discribed.
  */
 public class Tractor<F extends Fuel<T>, T extends Number> {
-	private static int idCounter = 0;
 	private final int id;
 	private F totalConsumption;
 	private int operatingHours;
 	private TractorRole role;
+	private F fuel;
 
-	@Author("Pilgerstorfer Peter")
-	public Tractor() {
-		this.id = idCounter;
-		idCounter++;
+	@Author("Kletzander Christian")
+	public Tractor(int id, F fuel, TractorRole role) {
+		this.id = id;
+		this.fuel = fuel;
+		this.role = role;
 	}
 
 	@Author("Pilgerstorfer Peter")
