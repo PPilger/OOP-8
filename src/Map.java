@@ -1,17 +1,20 @@
-@Author ("Kletzander Christian")
+@Author("Peter Pilgerstorfer")
 /*
  * A map which offers iterators (that return values and keys of the map),
- * folding (retrieves multiple sets out of this map, each set contains a numerical 
- * result depending on the charasteristics of the values in this map)
- * zip (combines this map with another one, keys will be a union of both maps although
- * the mapped values will be combined and shall be different if the same key exists in both maps)
+ * folding (retrieves multiple sets out of this map, each set contains a
+ * numerical result depending on the charasteristics of the values in this map)
+ * zip (combines this map with another one, keys will be a union of both maps
+ * although the mapped values will be combined and shall be different if the
+ * same key exists in both maps)
  */
 public class Map<K, V> {
 	private Node root;
 
+	@Author("Peter Pilgerstorfer")
 	public Map() {
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public Map(Map<K, V> map) {
 		Iterator<Node> iter = nodeIterator();
 
@@ -21,6 +24,7 @@ public class Map<K, V> {
 		}
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public void put(K key, V value) {
 		Node node = getNode(key);
 
@@ -40,6 +44,7 @@ public class Map<K, V> {
 		}
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public V get(K key) {
 		Node node = getNode(key);
 
@@ -50,6 +55,7 @@ public class Map<K, V> {
 		}
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public void remove(K key) {
 		Node node = getNode(key);
 
@@ -68,6 +74,7 @@ public class Map<K, V> {
 		}
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
 		Iterator<V> it = iterator();
 
@@ -79,6 +86,7 @@ public class Map<K, V> {
 		return aggregator.getDistribution();
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
 		Map<K, R> combined = new Map<K, R>();
 
@@ -92,6 +100,7 @@ public class Map<K, V> {
 		return combined;
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public Iterator<V> iterator() {
 		return new MapIterator<V>(new ValueGetter<Node, V>() {
 			@Override
@@ -101,6 +110,7 @@ public class Map<K, V> {
 		});
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public Iterator<K> keyIterator() {
 		return new MapIterator<K>(new ValueGetter<Node, K>() {
 			@Override
@@ -110,6 +120,7 @@ public class Map<K, V> {
 		});
 	}
 
+	@Author("Peter Pilgerstorfer")
 	private Iterator<Node> nodeIterator() {
 		return new MapIterator<Node>(new ValueGetter<Node, Node>() {
 			@Override
@@ -119,6 +130,7 @@ public class Map<K, V> {
 		});
 	}
 
+	@Author("Peter Pilgerstorfer")
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		Iterator<Node> iter = nodeIterator();
@@ -139,6 +151,7 @@ public class Map<K, V> {
 		return sb.toString();
 	}
 
+	@Author("Peter Pilgerstorfer")
 	private Node getNode(K key) {
 		Iterator<Node> iter = nodeIterator();
 
@@ -156,37 +169,44 @@ public class Map<K, V> {
 		return null; // key not found
 	}
 
+	@Author("Peter Pilgerstorfer")
 	private class Node {
 		private K key;
 		private V value;
 		private Node next;
 		private Node prev;
 
+		@Author("Peter Pilgerstorfer")
 		private Node(K key, V value) {
 			this.key = key;
 			this.value = value;
 		}
 
 		@Override
+		@Author("Peter Pilgerstorfer")
 		public String toString() {
 			return key + ": " + value;
 		}
 	}
 
+	@Author("Peter Pilgerstorfer")
 	private class MapIterator<T> implements Iterator<T> {
 		private Node next = root;
 		private ValueGetter<Node, T> valGetter;
 
+		@Author("Peter Pilgerstorfer")
 		private MapIterator(ValueGetter<Node, T> valGetter) {
 			this.valGetter = valGetter;
 		}
 
 		@Override
+		@Author("Peter Pilgerstorfer")
 		public boolean hasNext() {
 			return next != null;
 		}
 
 		@Override
+		@Author("Peter Pilgerstorfer")
 		public T next() {
 			T value = valGetter.getValue(next);
 			next = next.next;
