@@ -1,7 +1,13 @@
-@Author (value="Koegler Alexander", describtion="Distributes values to Diesel and BioGas tractors")
+@Author ("Koegler Alexander")
+/**
+ * Distributes values to Diesel and BioGas tractors
+ * @author Koegler Alexander
+ *
+ * @param <V>
+ */
 public class FuelDistributor<V> extends Distributor<Tractor, Object, V>{
 
-	@Author (value="Koegler Alexander")
+	@Author ("Koegler Alexander")
 	public FuelDistributor(Merger<Tractor, V> comb) {
 		super(comb);
 		addType(Diesel.class);
@@ -9,7 +15,7 @@ public class FuelDistributor<V> extends Distributor<Tractor, Object, V>{
 	}
 
 	@Override
-	@Author (value="Koegler Alexander")
+	@Author ("Koegler Alexander")
 	protected boolean fitsKey(Tractor obj, Object fuel) {
 		return obj.getFuel().getClass() == fuel;
 	}

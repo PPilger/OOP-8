@@ -1,12 +1,16 @@
-@Author (value="Kletzander Christian",
-describtion="A fertilizer has tank with a double-prec. floating point capacity ")
+@Author ("Kletzander Christian")
+/**
+ * A fertilizer has tank with a double-prec. floating point capacity
+ * @author Kletzander Christian
+ *
+ */
 public class Fertilizer implements TractorRole {
 	private double capacity;
 
 	/** 
 	 * @param capacity of tank in liters
 	 */
-	@Author (value="Kletzander Christian")
+	@Author ("Kletzander Christian")
 	public Fertilizer(double capacity) {
 		this.capacity = capacity;
 	}
@@ -15,7 +19,7 @@ public class Fertilizer implements TractorRole {
 	 * @return capacity of tank in liters
 	 */
 	@Override
-	@Author (value="Kletzander Christian")
+	@Author ("Kletzander Christian")
 	public Double getAttribute() {
 		return capacity;
 	}
