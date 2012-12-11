@@ -9,6 +9,8 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 
+		TestKoegler t = new TestKoegler();
+		t.tk1();
 	}
 
 }
