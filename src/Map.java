@@ -98,34 +98,6 @@ public class Map<K, V> {
 	}
 
 	/**
-	 * Performs a zip operation on the two maps (this and other) with the
-	 * specified Combinator.
-	 * 
-	 * This map must contain the same keys as other.
-	 * 
-	 * The returned map contains every key with the values of this and other
-	 * combined.
-	 * 
-	 * @param other
-	 *            must not be null
-	 * @param comb
-	 *            must not be null
-	 */
-	@Author("Peter Pilgerstorfer")
-	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
-		Map<K, R> combined = new Map<K, R>();
-
-		Iterator<K> iter = keyIterator();
-		while (iter.hasNext()) {
-			K key = iter.next();
-			R result = comb.combine(get(key), other.get(key));
-			combined.put(key, result);
-		}
-
-		return combined;
-	}
-
-	/**
 	 * Returns an iterator that iterates through the values of the map.
 	 */
 	@Author("Peter Pilgerstorfer")

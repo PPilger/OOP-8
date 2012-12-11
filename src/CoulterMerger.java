@@ -1,7 +1,7 @@
 @Author("Koegler Alexander")
 public class CoulterMerger implements Merger<Tractor, Integer> {
 
-	Combinator<Integer, Integer, Integer> comb;
+	private Combinator<Integer, Integer, Integer> comb;
 
 	@Author("Koegler Alexander")
 	public CoulterMerger(Combinator<Integer, Integer, Integer> comb) {
