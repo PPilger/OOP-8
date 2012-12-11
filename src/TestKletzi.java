@@ -68,11 +68,7 @@ public class TestKletzi {
 		
 		System.out.println("=> OperatingHoursPerRole [AVG]");
 		System.out.println(farmKletzi.avgOHPerRole());
-		
-
-		
-
-		
+		 
 	}
 	
 }
