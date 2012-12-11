@@ -32,6 +32,6 @@ public class BioGas implements Fuel<Double> {
 	@Override
 	@Author ("Peter Pilgerstorfer")
 	public String toString() {
-		return cubicMeter + " m^3";
+		return cubicMeter + " m^3 bio gas";
 	}
 }

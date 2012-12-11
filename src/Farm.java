@@ -14,7 +14,7 @@ public class Farm {
 		this.myTractors = new Map<Integer, Tractor>();
 	}
 
-	@Author("Kšgler Alexander")
+	@Author("Koegler Alexander")
 	public void addTractor(Tractor tr) {
 		this.myTractors.put(tr.getID(), tr);
 	}
@@ -24,12 +24,12 @@ public class Farm {
 		return name;
 	}
 
-	@Author("Kšgler Alexander")
+	@Author("Koegler Alexander")
 	public void removeTractor(int id) {
 		myTractors.remove(id);
 	}
 
-	@Author("Kšgler Alexander")
+	@Author("Koegler Alexander")
 	public void changeRole(int id, TractorRole tr) {
 		myTractors.get(id);
 	}
@@ -83,8 +83,8 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Double> avgCapacityPerFuel() {
-		return fuelAvg(new CapacityMerger());
+	public Map<String, Average<Double>> avgCapacityPerFuel() {
+		return foldFuels(new CapacityMerger());
 	}
 
 	@Author("Peter Pilgerstorfer")

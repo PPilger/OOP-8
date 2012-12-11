@@ -32,6 +32,6 @@ public class Diesel implements Fuel<Integer> {
 	@Override
 	@Author ("Peter Pilgerstorfer")
 	public String toString() {
-		return liter + " l";
+		return liter + " l diesel";
 	}
 }

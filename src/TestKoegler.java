@@ -32,16 +32,16 @@ public class TestKoegler {
 		t1 = new Tractor<Diesel, Integer>(11,new Diesel(), new Fertilizer(167.9));
 		myFarm.addTractor(t1);
 		
-		Map<Object, Integer> mm = myFarm.minCoultersPerFuel();		
+		Map<String, Integer> mm = myFarm.minCoultersPerFuel();		
 		System.out.println(mm);
 		mm = myFarm.maxCoultersPerFuel();
 		System.out.println(mm);
-		Map<Object, Double> nn = myFarm.avgBioGasUsagePerRole();
+		Map<String, Double> nn = myFarm.avgBioGasUsagePerRole();
 		System.out.println(nn);
 		nn = myFarm.avgDieselUsagePerRole();
 		System.out.println(nn);
-		nn = myFarm.avgCapacityPerFuel();
-		System.out.println(nn);
+		Map<String, Average<Double>> nn2 = myFarm.avgCapacityPerFuel();
+		System.out.println(nn2);
 		nn = myFarm.avgOHPerFuel();
 		System.out.println(nn);
 		nn = myFarm.avgOHPerRole();
