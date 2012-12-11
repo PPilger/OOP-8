@@ -35,23 +35,23 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Double> avgOHPerRole() {
-		return roleAvg(new OperatingHoursMerger());
+	public Map<String, Average<Integer>> avgOHPerRole() {
+		return foldRoles(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Double> avgOHPerFuel() {
-		return fuelAvg(new OperatingHoursMerger());
+	public Map<String, Average<Integer>> avgOHPerFuel() {
+		return foldFuels(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Double> avgDieselUsagePerRole() {
-		return roleAvg(new DieselMerger());
+	public Map<String, Average<Integer>> avgDieselUsagePerRole() {
+		return foldRoles(new DieselMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Double> avgBioGasUsagePerRole() {
-		return roleAvg(new BioGasMerger());
+	public Map<String, Average<Double>> avgBioGasUsagePerRole() {
+		return foldRoles(new BioGasMerger());
 	}
 
 	@Author("Peter Pilgerstorfer")
@@ -95,35 +95,6 @@ public class Farm {
 	@Author("Peter Pilgerstorfer")
 	private <V> Map<String, V> foldFuels(Merger<Tractor, V> folder) {
 		return myTractors.fold(new FuelDistributor<V>(folder));
-	}
-
-	@Author("Kletzander Christian")
-	private <V extends Number> Map<String, Double> roleAvg(
-			Merger<Tractor, V> comb) {
-		Map<String, V> sum = foldRoles(comb);
-		Map<String, Integer> count = foldRoles(new CountFolder<Tractor>());
-
-		return avg(sum, count);
-	}
-
-	@Author("Kletzander Christian")
-	private <V extends Number> Map<String, Double> fuelAvg(
-			Merger<Tractor, V> comb) {
-		Map<String, V> sum = foldFuels(comb);
-		Map<String, Integer> count = foldFuels(new CountFolder<Tractor>());
-
-		return avg(sum, count);
-	}
-
-	@Author("Peter Pilgerstorfer")
-	private <K, V extends Number> Map<K, Double> avg(Map<K, V> sum,
-			Map<K, Integer> count) {
-		return sum.zip(count, new Combinator<V, Integer, Double>() {
-			@Override
-			public Double combine(V sum, Integer count) {
-				return sum.doubleValue() / count.doubleValue();
-			}
-		});
 	}
 
 	@Override

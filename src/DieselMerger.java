@@ -2,13 +2,7 @@
 /**
  * Sums amount, of consumed Diesel, up.
  */
-public class DieselMerger implements Merger<Tractor, Integer> {
-
-	@Override
-	@Author("Koegler Alexander")
-	public Integer initialValue() {
-		return 0;
-	}
+public class DieselMerger extends IntAverageMerger {
 
 	/**
 	 * returns sum of param num and total amount of a Tractor's Diesel
@@ -16,11 +10,13 @@ public class DieselMerger implements Merger<Tractor, Integer> {
 	 */
 	@Override
 	@Author("Koegler Alexander")
-	public Integer merge(Tractor tr, Integer num) {
+	public Average<Integer> merge(Tractor tr, Average<Integer> num) {
 		Fuel f = tr.getFuel();
+
 		if (f.getClass() == Diesel.class) {
-			return num + f.getAmount().intValue();
+			num.add(f.getAmount().intValue());
 		}
+
 		return num;
 	}
 }

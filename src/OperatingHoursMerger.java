@@ -1,24 +1,14 @@
-@Author ("Kletzander Christian")
+@Author("Kletzander Christian")
 /*
  * Sums amount, of operating hours, up
  */
-public class OperatingHoursMerger implements Merger<Tractor, Integer> {
+public class OperatingHoursMerger extends IntAverageMerger {
 
 	@Override
-	@Author ("Kletzander Christian")
-	public Integer initialValue() {
-		return 0;
+	@Author("Kletzander Christian")
+	public Average<Integer> merge(Tractor newElem, Average<Integer> value) {
+		value.add(newElem.getOperatingHours());
+		return value;
 	}
 
-	@Override
-	@Author ("Kletzander Christian")
-	public Integer merge(Tractor newElem, Integer value) {
-		
-		int hours = newElem.getOperatingHours();		
-		return hours + value;
-		
-	}
-
-	
-	
 }
