@@ -5,6 +5,7 @@
 public abstract class Distributor<T, K, V> {
 	private Map<K, V> map = new Map<K, V>();
 	private Merger<T, V> comb;
+	private K totalKey;
 
 	/**
 	 * Initializes object
@@ -16,6 +17,15 @@ public abstract class Distributor<T, K, V> {
 	@Author("Pilgerstorfer Peter")
 	public Distributor(Merger<T, V> comb) {
 		this.comb = comb;
+		this.totalKey = null;
+	}
+	
+	@Author("Pilgerstorfer Peter")
+	public Distributor(Merger<T, V> comb, K totalKey) {
+		this.comb = comb;
+		this.totalKey = totalKey;
+		
+		addType(totalKey);
 	}
 
 	/**
@@ -24,7 +34,7 @@ public abstract class Distributor<T, K, V> {
 	 * @param key
 	 */
 	@Author("Pilgerstorfer Peter")
-	protected void addType(K key) {
+	private void addType(K key) {
 		map.put(key, comb.initialValue());
 	}
 
@@ -36,7 +46,14 @@ public abstract class Distributor<T, K, V> {
 	 */
 	@Author("Pilgerstorfer Peter")
 	public void add(T obj) {
-		Iterator<K> keyIter = map.keyIterator();
+		Iterator<K> keyIter;
+		K objKey = getKey(obj);
+		
+		if(map.get(objKey) == null) {
+			addType(objKey);
+		}
+		
+		keyIter = map.keyIterator();
 
 		while (keyIter.hasNext()) {
 			K key = keyIter.next();
@@ -69,5 +86,13 @@ public abstract class Distributor<T, K, V> {
 	 * @return true if they should be merged, otherwise false
 	 */
 	@Author("Pilgerstorfer Peter")
-	protected abstract boolean fitsKey(T obj, K key);
+	private boolean fitsKey(T obj, K key) {
+		if(key.equals(totalKey)) {
+			return true;
+		}
+		return key.equals(getKey(obj));
+	}
+
+	@Author("Pilgerstorfer Peter")
+	protected abstract K getKey(T obj);
 }

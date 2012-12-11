@@ -1,7 +1,7 @@
-@Author("Kletzander Christian")
-/*
- * A seeder's equiped with an integer amount of sowing coulters
+/**
+ * Represents the role seeder. The amount of sowing coulters is stored.
  */
+@Author("Kletzander Christian")
 public class Seeder implements TractorRole {
 	private int coulter;
 
@@ -21,6 +21,12 @@ public class Seeder implements TractorRole {
 	@Author("Kletzander Christian")
 	public Integer getAttribute() {
 		return coulter;
+	}
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public String getName() {
+		return "Seeder";
 	}
 
 	@Override

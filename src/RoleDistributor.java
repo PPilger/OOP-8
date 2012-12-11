@@ -2,20 +2,16 @@
 /*
  * Distributes values to Seeder, Fertilizer and all tractors
  */
-public class RoleDistributor<V> extends Distributor<Tractor, Object, V> {
+public class RoleDistributor<V> extends Distributor<Tractor, String, V> {
 
 	@Author ("Kletzander Christian")
 	public RoleDistributor(Merger<Tractor, V> comb) {
-		super(comb);
-		
-		addType(Seeder.class);
-		addType(Fertilizer.class);
-		addType(null);
+		super(comb, "Total");
 	}
 
 	@Override
-	@Author ("Kletzander Christian")
-	protected boolean fitsKey(Tractor tractor, Object roleType) {
-		return roleType == null || tractor.getRole().getClass() == roleType;
+	@Author("Pilgerstorfer Peter")
+	protected String getKey(Tractor tractor) {
+		return tractor.getRole().getName();
 	}
 }
