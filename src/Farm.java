@@ -23,6 +23,11 @@ public class Farm {
 	public String getName() {
 		return name;
 	}
+	
+	@Author("Koegler Alexander")
+	public Tractor getTractor(int id) {
+		return this.myTractors.get(id);
+	}
 
 	@Author("Koegler Alexander")
 	public void removeTractor(int id) {
