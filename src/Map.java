@@ -1,17 +1,18 @@
-@Author("Peter Pilgerstorfer")
 /**
- * Represents a map of key-value pairs. The key of every element is unique and may be null.
+ * Represents a map of key-value pairs. The key of every element is unique and
+ * may be null.
  */
+@Author("Peter Pilgerstorfer")
 public class Map<K, V> {
 	private Node root; // root of the linked list
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise the existing value is replaced
-	 * by the new one.
+	 * Inserts the specified key-value pair if the key doesn't exist. Otherwise
+	 * the existing value is replaced by the new one.
 	 * 
 	 * key may be null.
 	 */
+	@Author("Peter Pilgerstorfer")
 	public void put(K key, V value) {
 		Node node = getNode(key);
 
@@ -33,10 +34,11 @@ public class Map<K, V> {
 		}
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Returns the value of the element with the specified key. If there is no such element, null is returned.
+	 * Returns the value of the element with the specified key. If there is no
+	 * such element, null is returned.
 	 */
+	@Author("Peter Pilgerstorfer")
 	public V get(K key) {
 		Node node = getNode(key);
 
@@ -47,10 +49,11 @@ public class Map<K, V> {
 		}
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Removes the element with the specified key. If there is no such element, nothing is changed.
+	 * Removes the element with the specified key. If there is no such element,
+	 * nothing is changed.
 	 */
+	@Author("Peter Pilgerstorfer")
 	public void remove(K key) {
 		Node node = getNode(key);
 
@@ -71,16 +74,18 @@ public class Map<K, V> {
 		}
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Performs a special fold operation on the map. Several folds can be done at once for different types.
-	 * The Distributor distributes the value of an element to the concerned types,so every type can fold
-	 * different elements.
+	 * Performs a special fold operation on the map. Several folds can be done
+	 * at once for different types. The Distributor distributes the value of an
+	 * element to the concerned types,so every type can fold different elements.
 	 * 
-	 * The returned Map has the type stored as key with the respective folded value.
+	 * The returned Map has the type stored as key with the respective folded
+	 * value.
 	 * 
-	 * @param aggregator must not be null
+	 * @param aggregator
+	 *            must not be null
 	 */
+	@Author("Peter Pilgerstorfer")
 	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
 		Iterator<V> it = iterator();
 
@@ -92,17 +97,21 @@ public class Map<K, V> {
 		return aggregator.getDistribution();
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Performs a zip operation on the two maps (this and other) with the specified Combinator.
+	 * Performs a zip operation on the two maps (this and other) with the
+	 * specified Combinator.
 	 * 
 	 * This map must contain the same keys as other.
 	 * 
-	 * The returned map contains every key with the values of this and other combined.
+	 * The returned map contains every key with the values of this and other
+	 * combined.
 	 * 
-	 * @param other must not be null
-	 * @param comb must not be null
+	 * @param other
+	 *            must not be null
+	 * @param comb
+	 *            must not be null
 	 */
+	@Author("Peter Pilgerstorfer")
 	public <V2, R> Map<K, R> zip(Map<K, V2> other, Combinator<V, V2, R> comb) {
 		Map<K, R> combined = new Map<K, R>();
 
@@ -116,10 +125,10 @@ public class Map<K, V> {
 		return combined;
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
 	 * Returns an iterator that iterates through the values of the map.
 	 */
+	@Author("Peter Pilgerstorfer")
 	public Iterator<V> iterator() {
 		return new MapIterator<V>(new ValueGetter<Node, V>() {
 			@Override
@@ -129,10 +138,10 @@ public class Map<K, V> {
 		});
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
 	 * Returns an iterator that iterates through the keys of the map.
 	 */
+	@Author("Peter Pilgerstorfer")
 	public Iterator<K> keyIterator() {
 		return new MapIterator<K>(new ValueGetter<Node, K>() {
 			@Override
@@ -142,10 +151,10 @@ public class Map<K, V> {
 		});
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
 	 * Returns an iterator that iterates through the nodes of the map.
 	 */
+	@Author("Peter Pilgerstorfer")
 	private Iterator<Node> nodeIterator() {
 		return new MapIterator<Node>(new ValueGetter<Node, Node>() {
 			@Override
@@ -176,10 +185,11 @@ public class Map<K, V> {
 		return sb.toString();
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Returns the node with the specified key or null if such a node doesn't exist.
+	 * Returns the node with the specified key or null if such a node doesn't
+	 * exist.
 	 */
+	@Author("Peter Pilgerstorfer")
 	private Node getNode(K key) {
 		Iterator<Node> iter = nodeIterator();
 
@@ -197,10 +207,10 @@ public class Map<K, V> {
 		return null; // key not found
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
 	 * Represents a node of a double linked list that stores key-value pairs.
 	 */
+	@Author("Peter Pilgerstorfer")
 	private class Node {
 		private K key;
 		private V value;
@@ -220,40 +230,44 @@ public class Map<K, V> {
 		}
 	}
 
-	@Author("Peter Pilgerstorfer")
 	/**
-	 * Represents an Iterator that iterates over the map. The returned attribute can be specified 
-	 * by a ValueGetter (get the desired attribute of a Node object).
+	 * Represents an Iterator that iterates over the map. The returned attribute
+	 * can be specified by a ValueGetter (get the desired attribute of a Node
+	 * object).
 	 */
+	@Author("Peter Pilgerstorfer")
 	private class MapIterator<T> implements Iterator<T> {
 		private Node next = root;
 		private ValueGetter<Node, T> valGetter;
 
-		@Author("Peter Pilgerstorfer")
 		/**
 		 * Creates a new MapIterator that iterates over the desired attributes.
-		 * The specified ValueGetter returns the desired attribute of a Node object.
+		 * The specified ValueGetter returns the desired attribute of a Node
+		 * object.
 		 * 
-		 * @param valGetter must not be null
+		 * @param valGetter
+		 *            must not be null
 		 */
+		@Author("Peter Pilgerstorfer")
 		private MapIterator(ValueGetter<Node, T> valGetter) {
 			this.valGetter = valGetter;
 		}
 
-		@Override
-		@Author("Peter Pilgerstorfer")
 		/**
 		 * Returns true if there are more elements to read and false otherwise.
 		 */
+		@Override
+		@Author("Peter Pilgerstorfer")
 		public boolean hasNext() {
 			return next != null;
 		}
 
+		/**
+		 * Returns the next element. If there is no next element (hasNext() ==
+		 * false), null is returned.
+		 */
 		@Override
 		@Author("Peter Pilgerstorfer")
-		/**
-		 * Returns the next element. If there is no next element (hasNext() == false), null is returned.
-		 */
 		public T next() {
 			T value = valGetter.getValue(next);
 
