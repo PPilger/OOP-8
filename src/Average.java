@@ -28,6 +28,9 @@ public class Average<N extends Number> {
 	@Override
 	@Author("Pilgerstorfer Peter")
 	public String toString() {
+		if(count == 0) {
+			return "none";
+		}
 		return getAvg().toString();
 	}
 }
