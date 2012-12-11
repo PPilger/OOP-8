@@ -18,7 +18,7 @@ public class Average<N extends Number> {
 	}
 	
 	@Author("Pilgerstorfer Peter")
-	public Double getAvg() {
+	public Double getValue() {
 		if(count == 0) {
 			return Double.NaN;
 		}
@@ -31,6 +31,6 @@ public class Average<N extends Number> {
 		if(count == 0) {
 			return "none";
 		}
-		return String.format("%.2f", getAvg());
+		return String.format("%.2f", getValue());
 	}
 }

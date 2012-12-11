@@ -5,7 +5,6 @@
 public abstract class Distributor<T, K, V> {
 	private Map<K, V> map = new Map<K, V>();
 	private Merger<T, V> comb;
-	private K totalKey;
 
 	/**
 	 * Initializes object
@@ -17,7 +16,6 @@ public abstract class Distributor<T, K, V> {
 	@Author("Pilgerstorfer Peter")
 	public Distributor(Merger<T, V> comb) {
 		this.comb = comb;
-		this.totalKey = null;
 	}
 
 	/**

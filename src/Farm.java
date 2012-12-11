@@ -55,31 +55,13 @@ public class Farm {
 	}
 
 	@Author("Peter Pilgerstorfer")
-	public Map<String, Integer> minCoultersPerFuel() {
-		CoulterMerger cm = new CoulterMerger(
-				new Combinator<Integer, Integer, Integer>() {
-
-					@Override
-					public Integer combine(Integer val1, Integer val2) {
-						return Math.min(val1, val2);
-					}
-				});
-
-		return foldFuels(cm);
+	public Map<String, Extremum> minCoultersPerFuel() {
+		return foldFuels(new CoulterMerger(true));
 	}
 
 	@Author("Peter Pilgerstorfer")
-	public Map<String, Integer> maxCoultersPerFuel() {
-		CoulterMerger cm = new CoulterMerger(
-				new Combinator<Integer, Integer, Integer>() {
-
-					@Override
-					public Integer combine(Integer val1, Integer val2) {
-						return Math.max(val1, val2);
-					}
-				});
-
-		return foldFuels(cm);
+	public Map<String, Extremum> maxCoultersPerFuel() {
+		return foldFuels(new CoulterMerger(false));
 	}
 
 	@Author("Kletzander Christian")
