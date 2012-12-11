@@ -12,9 +12,8 @@ public class Test {
 	public static void main(String[] args) {
 
 		Map<String, Farm> allFarms = new Map<String, Farm>();
+		Tractor t1;
 		Farm myFarm = new Farm("Koeglers Farm");
-		allFarms.put(myFarm.getName(), myFarm);
-		myFarm = new Farm("Koeglers other Farm");
 		allFarms.put(myFarm.getName(), myFarm);
 		myFarm =  new Farm("Kletzis Farm");
 		allFarms.put(myFarm.getName(), myFarm);
@@ -24,74 +23,23 @@ public class Test {
 		allFarms.put(myFarm.getName(), myFarm);
 		
 		//####################################################
-		//Koeglers 1st Farm
-		System.out.println("-------- Test #-1 --------");
-		System.out.println("Test with 11 tractors");
+		//Koeglers Farm
+		System.out.println("-------- Initialization --------");
+		System.out.println("Farms without tractors");
 		System.out.println("-------------------------");
 		
-		myFarm = allFarms.get("Koeglers Farm");
-		Tractor t1 = new Tractor<BioGas, Double>(0,new BioGas(), new Seeder(13));
-		t1.incConsumption(25.);
-		t1.incOperatingHours(5);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<BioGas, Double>(1,new BioGas(), new Seeder(14));
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<BioGas, Double>(2,new BioGas(), new Seeder(15));
-		t1.incConsumption(37.);
-		t1.incOperatingHours(25);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(3,new Diesel(), new Seeder(26));
-		t1.incConsumption(25);
-		t1.incOperatingHours(5);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(4,new Diesel(), new Seeder(27));
-		t1.incConsumption(39);
-		t1.incOperatingHours(48);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(5,new Diesel(), new Seeder(28));
-		myFarm.addTractor(t1);
-		
-		
-		t1 = new Tractor<BioGas, Double>(6,new BioGas(), new Fertilizer(58.));
-		myFarm.addTractor(t1);
-		t1.incConsumption(25.);
-		t1.incOperatingHours(5);
-		
-		t1 = new Tractor<BioGas, Double>(7,new BioGas(), new Fertilizer(97.5));
-		t1.incConsumption(19.);
-		t1.incOperatingHours(5);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<BioGas, Double>(8,new BioGas(), new Fertilizer(67.8));
-		t1.incConsumption(5.);
-		t1.incOperatingHours(65);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(9,new Diesel(), new Fertilizer(158.3));
-		t1.incConsumption(7);
-		t1.incOperatingHours(54);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(10,new Diesel(), new Fertilizer(186.8));
-		t1.incConsumption(72);
-		t1.incOperatingHours(69);
-		myFarm.addTractor(t1);
-		
-		t1 = new Tractor<Diesel, Integer>(11,new Diesel(), new Fertilizer(167.9));
-		myFarm.addTractor(t1);		
-		prnt(myFarm);
+		Iterator<Farm> iti = allFarms.iterator();
+		while(iti.hasNext())
+		{
+			System.out.println(iti.next());
+		}
 		
 		//####################################################
-		//Koeglers 2nd Farm
+		//Koeglers Farm
 		System.out.println("-------- Test #0 --------");
 		System.out.println("Add, edit and remove tractors from a farm");
 		System.out.println("-------------------------");
-		myFarm = allFarms.get(("Koeglers other Farm"));
+		myFarm = allFarms.get(("Koeglers Farm"));
 		
 		t1 = new Tractor<BioGas, Double>(0,new BioGas(), new Seeder(13));
 		t1.incConsumption(25.);
@@ -119,7 +67,7 @@ public class Test {
 		t1 = new Tractor<Diesel, Integer>(5,new Diesel(), new Seeder(28));
 		myFarm.addTractor(t1);
 		
-		prnt(myFarm);
+		System.out.println(myFarm);
 		
 		//increase Seeders AVG Operating Hours, and their consumption
 		t1 = myFarm.getTractor(5);
@@ -135,12 +83,12 @@ public class Test {
 			t1.incOperatingHours(5);
 			t1.incOperatingHours(25);
 		}
-		prnt(myFarm);
+		System.out.println(myFarm);
 		
 		//remove tractors
 		myFarm.removeTractor(3);
 		myFarm.removeTractor(1);
-		prnt(myFarm);
+		System.out.println(myFarm);
 		
 		//add new one
 		t1 = new Tractor<BioGas, Double>(33,new BioGas(), new Fertilizer(30));
@@ -148,7 +96,7 @@ public class Test {
 		t1.incOperatingHours(8);
 		myFarm.addTractor(t1);
 		
-		prnt(myFarm);
+		System.out.println(myFarm);
 		
 		//####################################################
 		//Klees Farm1
@@ -191,7 +139,7 @@ public class Test {
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
-		prnt(farmKletzi);
+		System.out.println(farmKletzi);
 		
 		//####################################################
 		//Klees Null Farm
@@ -235,7 +183,7 @@ public class Test {
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
 		
-		prnt(farmKletzi);
+		System.out.println(farmKletzi);
 		
 		//####################################################
 		//Peters Farm
@@ -262,8 +210,20 @@ public class Test {
 		tr.incConsumption(19.3);
 		tr.incOperatingHours(400);
 		farm.addTractor(tr);
-		prnt(farm);
+		System.out.println(farm);
 		
+		
+		//####################################################
+		//Statistics
+		System.out.println("-------- Test #4 --------");
+		System.out.println("Statistics of all existing farms");
+		System.out.println("-------------------------");
+		
+		iti = allFarms.iterator();
+		while(iti.hasNext())
+		{
+			prnt(iti.next());
+		}
 	}
 	
 	/**
@@ -275,26 +235,34 @@ public class Test {
 	{
 		System.out.println(myFarm);
 		
-		System.out.println("=> MinCoultsersPerFuel [AVG]");
-		System.out.println(myFarm.minCoultersPerFuel());
+		System.out.print("MinCoultsersPerFuel: [");
+		System.out.print(myFarm.minCoultersPerFuel());
+		System.out.println("]");
 		
-		System.out.println("=> MaxCoultsersPerFuel [AVG]");
-		System.out.println(myFarm.maxCoultersPerFuel());
+		System.out.print("MaxCoultsersPerFuel: [");
+		System.out.print(myFarm.maxCoultersPerFuel());
+		System.out.println("]");
 	
-		System.out.println("=> CapacityPerFuel [AVG]");
-		System.out.println(myFarm.avgCapacityPerFuel());
+		System.out.print("CapacityPerFuel: [");
+		System.out.print(myFarm.avgCapacityPerFuel());
+		System.out.println("]");
 		
-		System.out.println("=> BioGasUsagePerRole [AVG]");
-		System.out.println(myFarm.avgBioGasUsagePerRole());
+		System.out.print("BioGasUsagePerRole: [");
+		System.out.print(myFarm.avgBioGasUsagePerRole());
+		System.out.println("]");
 	
-		System.out.println("=> DieselUsagePerRole [AVG]");
-		System.out.println(myFarm.avgDieselUsagePerRole());
+		System.out.print("DieselUsagePerRole: [");
+		System.out.print(myFarm.avgDieselUsagePerRole());
+		System.out.println("]");
 		
-		System.out.println("=> OperatingHoursPerFuel [AVG]");
-		System.out.println(myFarm.avgOHPerFuel());
+		System.out.print("OperatingHoursPerFuel: [");
+		System.out.print(myFarm.avgOHPerFuel());
+		System.out.println("]");
 		
-		System.out.println("=> OperatingHoursPerRole [AVG]");
-		System.out.println(myFarm.avgOHPerRole());
+		System.out.print("OperatingHoursPerRole: [");
+		System.out.print(myFarm.avgOHPerRole());
+		System.out.println("]");
+		
 		System.out.println();
 	}
 
