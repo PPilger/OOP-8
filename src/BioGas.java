@@ -22,12 +22,6 @@ public class BioGas implements Fuel<Double> {
 	public void incAmount(Double amount) {
 		this.cubicMeter += amount;
 	}
-
-	@Override
-	@Author("Pilgerstorfer Peter")
-	public String getName() {
-		return "Bio Gas";
-	}
 	
 	@Override
 	@Author ("Peter Pilgerstorfer")

@@ -19,14 +19,6 @@ public abstract class Distributor<T, K, V> {
 		this.comb = comb;
 		this.totalKey = null;
 	}
-	
-	@Author("Pilgerstorfer Peter")
-	public Distributor(Merger<T, V> comb, K totalKey) {
-		this.comb = comb;
-		this.totalKey = totalKey;
-		
-		addType(totalKey);
-	}
 
 	/**
 	 * Adds key to map with initial value
@@ -34,9 +26,21 @@ public abstract class Distributor<T, K, V> {
 	 * @param key
 	 */
 	@Author("Pilgerstorfer Peter")
-	private void addType(K key) {
+	protected void addType(K key) {
 		map.put(key, comb.initialValue());
 	}
+
+	/**
+	 * checking if object should be merged in add() with value mapped by given
+	 * key
+	 * 
+	 * @param obj
+	 *            object
+	 * @param key
+	 * @return true if they should be merged, otherwise false
+	 */
+	@Author("Pilgerstorfer Peter")
+	protected abstract boolean fitsKey(T obj, K key);
 
 	/**
 	 * 
@@ -46,14 +50,7 @@ public abstract class Distributor<T, K, V> {
 	 */
 	@Author("Pilgerstorfer Peter")
 	public void add(T obj) {
-		Iterator<K> keyIter;
-		K objKey = getKey(obj);
-		
-		if(map.get(objKey) == null) {
-			addType(objKey);
-		}
-		
-		keyIter = map.keyIterator();
+		Iterator<K> keyIter = map.keyIterator();
 
 		while (keyIter.hasNext()) {
 			K key = keyIter.next();
@@ -75,24 +72,4 @@ public abstract class Distributor<T, K, V> {
 	public Map<K, V> getDistribution() {
 		return map;
 	}
-
-	/**
-	 * checking if object should be merged in add() with value mapped by given
-	 * key
-	 * 
-	 * @param obj
-	 *            object
-	 * @param key
-	 * @return true if they should be merged, otherwise false
-	 */
-	@Author("Pilgerstorfer Peter")
-	private boolean fitsKey(T obj, K key) {
-		if(key.equals(totalKey)) {
-			return true;
-		}
-		return key.equals(getKey(obj));
-	}
-
-	@Author("Pilgerstorfer Peter")
-	protected abstract K getKey(T obj);
 }

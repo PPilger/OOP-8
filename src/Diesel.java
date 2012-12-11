@@ -6,7 +6,8 @@ public class Diesel implements Fuel<Integer> {
 	private int liter = 0;
 
 	/**
-	 * Returns the amount of diesel in liters. The amount is greater or equal to zero.
+	 * Returns the amount of diesel in liters. The amount is greater or equal to
+	 * zero.
 	 */
 	@Override
 	@Author("Koegler Alexander")
@@ -24,13 +25,7 @@ public class Diesel implements Fuel<Integer> {
 	}
 
 	@Override
-	@Author("Pilgerstorfer Peter")
-	public String getName() {
-		return "Diesel";
-	}
-	
-	@Override
-	@Author ("Peter Pilgerstorfer")
+	@Author("Peter Pilgerstorfer")
 	public String toString() {
 		return liter + " l diesel";
 	}

@@ -12,7 +12,4 @@ public interface Fuel<T extends Number> {
 	 */
 	@Author("Koegler Alexander")
 	public void incAmount(T amount);
-	
-	@Author("Pilgerstorfer Peter")
-	public String getName();
 }

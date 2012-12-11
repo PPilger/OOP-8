@@ -9,10 +9,4 @@ public interface TractorRole {
 	 */
 	@Author("Kletzander Christian")
 	public Number getAttribute();
-
-	/**
-	 * Returns the name of the role.
-	 */
-	@Author("Pilgerstorfer Peter")
-	public String getName();
 }

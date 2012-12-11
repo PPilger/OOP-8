@@ -25,12 +25,6 @@ public class Fertilizer implements TractorRole {
 
 	@Override
 	@Author("Pilgerstorfer Peter")
-	public String getName() {
-		return "Fertilizer";
-	}
-
-	@Override
-	@Author("Pilgerstorfer Peter")
 	public String toString() {
 		return "Fertilizer (" + capacity + " l)";
 	}

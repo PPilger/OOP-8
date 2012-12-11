@@ -22,13 +22,7 @@ public class Seeder implements TractorRole {
 	public Integer getAttribute() {
 		return coulter;
 	}
-
-	@Override
-	@Author("Pilgerstorfer Peter")
-	public String getName() {
-		return "Seeder";
-	}
-
+	
 	@Override
 	@Author("Pilgerstorfer Peter")
 	public String toString() {

@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Author("Koegler Alexander")
 public @interface Author {
 	@Author("Koegler Alexander")
-	String value() default "Team 129";
+	String value();
 }
