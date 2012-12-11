@@ -1,7 +1,7 @@
-@Author("Kletzander Christian")
-/*
- * Sums amount, of operating hours, up
+/**
+ * Averages the operating hours of tractors.
  */
+@Author("Kletzander Christian")
 public class OperatingHoursMerger implements Merger<Tractor, Average> {
 
 	@Override
@@ -9,12 +9,17 @@ public class OperatingHoursMerger implements Merger<Tractor, Average> {
 	public Average initialValue() {
 		return new Average();
 	}
-	
+
+	/**
+	 * This method adds the operating hours of tractor to avg and returns avg.
+	 * 
+	 * avg is changed by this method.
+	 */
 	@Override
 	@Author("Kletzander Christian")
-	public Average merge(Tractor newElem, Average value) {
-		value.add(newElem.getOperatingHours());
-		return value;
+	public Average merge(Tractor tractor, Average avg) {
+		avg.add(tractor.getOperatingHours());
+		return avg;
 	}
 
 }

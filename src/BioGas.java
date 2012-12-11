@@ -1,12 +1,13 @@
-@Author("Koegler Alexander")
 /**
  * Represents a bio gas fuel. The amount is stored as double.
  */
+@Author("Koegler Alexander")
 public class BioGas implements Fuel<Double> {
 	private double cubicMeter = 0;
 
 	/**
-	 * Returns the amount of bio gas in cubic meters. The amount is greater or equal to zero.
+	 * Returns the amount of bio gas in cubic meters. The amount is greater or
+	 * equal to zero.
 	 */
 	@Override
 	@Author("Koegler Alexander")
@@ -22,9 +23,9 @@ public class BioGas implements Fuel<Double> {
 	public void incAmount(Double amount) {
 		this.cubicMeter += amount;
 	}
-	
+
 	@Override
-	@Author ("Peter Pilgerstorfer")
+	@Author("Peter Pilgerstorfer")
 	public String toString() {
 		return cubicMeter + " m^3 bio gas";
 	}

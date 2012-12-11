@@ -1,3 +1,6 @@
+/**
+ * Is able to calculate the average of some values.
+ */
 @Author("Pilgerstorfer Peter")
 public class Average {
 	private double sum = 0;
@@ -9,6 +12,10 @@ public class Average {
 		count++;
 	}
 
+	/**
+	 * Returns the average of all added values or Double.NaN, if no value was
+	 * added.
+	 */
 	@Author("Pilgerstorfer Peter")
 	public Double getValue() {
 		if (count == 0) {
@@ -17,6 +24,10 @@ public class Average {
 		return sum / count;
 	}
 
+	/**
+	 * Returns the average as String (2 fractional digits) or "none" if no value
+	 * was added.
+	 */
 	@Override
 	@Author("Pilgerstorfer Peter")
 	public String toString() {

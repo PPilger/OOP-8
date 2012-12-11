@@ -1,7 +1,7 @@
-@Author("Koegler Alexander")
 /**
  * Represents a diesel fuel. The amount is stored as int
  */
+@Author("Koegler Alexander")
 public class Diesel implements Fuel<Integer> {
 	private int liter = 0;
 

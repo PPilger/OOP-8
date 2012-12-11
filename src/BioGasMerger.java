@@ -1,7 +1,7 @@
-@Author("Koegler Alexander")
 /**
- * Sums amount, of consumed BioGas, up.
+ * Averages the total consumptions of bio gas engined tractors.
  */
+@Author("Koegler Alexander")
 public class BioGasMerger implements Merger<Tractor, Average> {
 
 	@Override
@@ -11,18 +11,20 @@ public class BioGasMerger implements Merger<Tractor, Average> {
 	}
 
 	/**
-	 * returns sum of param num and total amount of a Tractor's BioGas
-	 * consumption
+	 * If tractor has a bio gas engine, this method adds the total consumption of
+	 * tractor to avg and returns avg. Otherwise avg is returned unchanged.
+	 * 
+	 * avg may be changed by this method.
 	 */
 	@Override
 	@Author("Koegler Alexander")
-	public Average merge(Tractor tr, Average num) {
-		Fuel f = tr.getFuel();
+	public Average merge(Tractor tractor, Average avg) {
+		Fuel fuel = tractor.getFuel();
 
-		if (f.getClass() == BioGas.class) {
-			num.add(f.getAmount());
+		if (fuel.getClass() == BioGas.class) {
+			avg.add(fuel.getAmount());
 		}
 
-		return num;
+		return avg;
 	}
 }
