@@ -2,20 +2,22 @@
 public class Extremum {
 	private int value;
 	private boolean empty = true;
-	private Combinator<Integer, Integer, Integer> f;
+	private boolean min;
 
 	@Author("Pilgerstorfer Peter")
-	public Extremum(Combinator<Integer, Integer, Integer> f) {
-		this.f = f;
+	public Extremum(boolean min) {
+		this.min = true;
 	}
-	
+
 	@Author("Pilgerstorfer Peter")
 	public void add(Integer newVal) {
 		if (empty) {
 			value = newVal;
 			empty = false;
+		} else if (min) {
+			value = Math.min(value, newVal);
 		} else {
-			value = f.combine(value, newVal);
+			value = Math.max(value, newVal);
 		}
 	}
 
