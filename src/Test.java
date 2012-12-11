@@ -199,6 +199,7 @@ public class Test {
 		System.out.println("treatment of null values");
 		System.out.println("-------------------------");
 		
+		farmKletzi = allFarms.get("Null Farm");
 		tr = new Tractor<BioGas, Double>(100, new BioGas(), new Seeder(2));
 		tr.incOperatingHours(11);
 		tr.incConsumption(12.0);
