@@ -31,6 +31,6 @@ public class Average<N extends Number> {
 		if(count == 0) {
 			return "none";
 		}
-		return getAvg().toString();
+		return String.format("%.2f", getAvg());
 	}
 }
