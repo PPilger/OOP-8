@@ -2,13 +2,19 @@
 /**
  * Sums amount, of a fertilizer's capacity, up
  */
-public class CapacityMerger extends DoubleAverageMerger {
+public class CapacityMerger implements Merger<Tractor, Average> {
 
 	@Override
 	@Author("Koegler Alexander")
-	public Average<Double> merge(Tractor newElem, Average<Double> value) {
+	public Average initialValue() {
+		return new Average();
+	}
+	
+	@Override
+	@Author("Koegler Alexander")
+	public Average merge(Tractor newElem, Average value) {
 		if (newElem.getRole().getClass() == Fertilizer.class) {
-			value.add(newElem.getAttirbute().doubleValue());
+			value.add(newElem.getAttirbute());
 		}
 		return value;
 	}

@@ -40,22 +40,22 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Average<Integer>> avgOHPerRole() {
+	public Map<String, Average> avgOHPerRole() {
 		return foldRoles(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Average<Integer>> avgOHPerFuel() {
+	public Map<String, Average> avgOHPerFuel() {
 		return foldFuels(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Average<Integer>> avgDieselUsagePerRole() {
+	public Map<String, Average> avgDieselUsagePerRole() {
 		return foldRoles(new DieselMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Average<Double>> avgBioGasUsagePerRole() {
+	public Map<String, Average> avgBioGasUsagePerRole() {
 		return foldRoles(new BioGasMerger());
 	}
 
@@ -70,7 +70,7 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<String, Average<Double>> avgCapacityPerFuel() {
+	public Map<String, Average> avgCapacityPerFuel() {
 		return foldFuels(new CapacityMerger());
 	}
 

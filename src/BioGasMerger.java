@@ -2,7 +2,13 @@
 /**
  * Sums amount, of consumed BioGas, up.
  */
-public class BioGasMerger extends DoubleAverageMerger {
+public class BioGasMerger implements Merger<Tractor, Average> {
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public Average initialValue() {
+		return new Average();
+	}
 
 	/**
 	 * returns sum of param num and total amount of a Tractor's BioGas
@@ -10,11 +16,11 @@ public class BioGasMerger extends DoubleAverageMerger {
 	 */
 	@Override
 	@Author("Koegler Alexander")
-	public Average<Double> merge(Tractor tr, Average<Double> num) {
+	public Average merge(Tractor tr, Average num) {
 		Fuel f = tr.getFuel();
 
 		if (f.getClass() == BioGas.class) {
-			num.add(f.getAmount().doubleValue());
+			num.add(f.getAmount());
 		}
 
 		return num;
