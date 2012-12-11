@@ -22,6 +22,12 @@ public class Diesel implements Fuel<Integer> {
 	public void incAmount(Integer amount) {
 		liter += amount;
 	}
+
+	@Override
+	@Author("Pilgerstorfer Peter")
+	public String getName() {
+		return "Diesel";
+	}
 	
 	@Override
 	@Author ("Peter Pilgerstorfer")

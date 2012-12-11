@@ -35,27 +35,27 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<Object, Double> avgOHPerRole() {
+	public Map<String, Double> avgOHPerRole() {
 		return roleAvg(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<Object, Double> avgOHPerFuel() {
+	public Map<String, Double> avgOHPerFuel() {
 		return fuelAvg(new OperatingHoursMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<Object, Double> avgDieselUsagePerRole() {
+	public Map<String, Double> avgDieselUsagePerRole() {
 		return roleAvg(new DieselMerger());
 	}
 
 	@Author("Kletzander Christian")
-	public Map<Object, Double> avgBioGasUsagePerRole() {
+	public Map<String, Double> avgBioGasUsagePerRole() {
 		return roleAvg(new BioGasMerger());
 	}
 
 	@Author("Peter Pilgerstorfer")
-	public Map<Object, Integer> minCoultersPerFuel() {
+	public Map<String, Integer> minCoultersPerFuel() {
 		CoulterMerger cm = new CoulterMerger(
 				new Combinator<Integer, Integer, Integer>() {
 
@@ -69,7 +69,7 @@ public class Farm {
 	}
 
 	@Author("Peter Pilgerstorfer")
-	public Map<Object, Integer> maxCoultersPerFuel() {
+	public Map<String, Integer> maxCoultersPerFuel() {
 		CoulterMerger cm = new CoulterMerger(
 				new Combinator<Integer, Integer, Integer>() {
 
@@ -83,34 +83,34 @@ public class Farm {
 	}
 
 	@Author("Kletzander Christian")
-	public Map<Object, Double> avgCapacityPerFuel() {
+	public Map<String, Double> avgCapacityPerFuel() {
 		return fuelAvg(new CapacityMerger());
 	}
 
 	@Author("Peter Pilgerstorfer")
-	private <V> Map<Object, V> foldRoles(Merger<Tractor, V> folder) {
+	private <V> Map<String, V> foldRoles(Merger<Tractor, V> folder) {
 		return myTractors.fold(new RoleDistributor<V>(folder));
 	}
 
 	@Author("Peter Pilgerstorfer")
-	private <V> Map<Object, V> foldFuels(Merger<Tractor, V> folder) {
+	private <V> Map<String, V> foldFuels(Merger<Tractor, V> folder) {
 		return myTractors.fold(new FuelDistributor<V>(folder));
 	}
 
 	@Author("Kletzander Christian")
-	private <V extends Number> Map<Object, Double> roleAvg(
+	private <V extends Number> Map<String, Double> roleAvg(
 			Merger<Tractor, V> comb) {
-		Map<Object, V> sum = foldRoles(comb);
-		Map<Object, Integer> count = foldRoles(new CountFolder<Tractor>());
+		Map<String, V> sum = foldRoles(comb);
+		Map<String, Integer> count = foldRoles(new CountFolder<Tractor>());
 
 		return avg(sum, count);
 	}
 
 	@Author("Kletzander Christian")
-	private <V extends Number> Map<Object, Double> fuelAvg(
+	private <V extends Number> Map<String, Double> fuelAvg(
 			Merger<Tractor, V> comb) {
-		Map<Object, V> sum = foldFuels(comb);
-		Map<Object, Integer> count = foldFuels(new CountFolder<Tractor>());
+		Map<String, V> sum = foldFuels(comb);
+		Map<String, Integer> count = foldFuels(new CountFolder<Tractor>());
 
 		return avg(sum, count);
 	}

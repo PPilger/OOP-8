@@ -5,19 +5,17 @@
  *
  * @param <V>
  */
-public class FuelDistributor<V> extends Distributor<Tractor, Object, V>{
+public class FuelDistributor<V> extends Distributor<Tractor, String, V>{
 
 	@Author ("Koegler Alexander")
 	public FuelDistributor(Merger<Tractor, V> comb) {
 		super(comb);
-		addType(Diesel.class);
-		addType(BioGas.class);
 	}
 
 	@Override
 	@Author ("Koegler Alexander")
-	protected boolean fitsKey(Tractor obj, Object fuel) {
-		return obj.getFuel().getClass() == fuel;
+	protected String getKey(Tractor obj) {
+		return obj.getFuel().getName();
 	}
 
 }
