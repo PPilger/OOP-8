@@ -144,7 +144,7 @@ public class Test {
 
 		// ####################################################
 		// Klees Null Farm
-		System.out.println("-------- Test #2 (Test von Null-Werten) --------");
+		System.out.println("-------- Test #2 ---------");
 		System.out.println("treatment of null values");
 		System.out.println("-------------------------");
 
