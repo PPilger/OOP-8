@@ -2,7 +2,7 @@
  * Represents a bio gas fuel. The amount is stored as double.
  */
 @Author("Koegler Alexander")
-public class BioGas implements Fuel<Double> {
+public class BioGas implements Fuel{
 	private double cubicMeter = 0;
 
 	/**
@@ -20,8 +20,8 @@ public class BioGas implements Fuel<Double> {
 	 */
 	@Override
 	@Author("Koegler Alexander")
-	public void incAmount(Double amount) {
-		this.cubicMeter += amount;
+	public void incAmount(Number amount) {
+		this.cubicMeter += (Double)amount;
 	}
 
 	@Override
