@@ -2,7 +2,7 @@
  * Represents a diesel fuel. The amount is stored as int
  */
 @Author("Koegler Alexander")
-public class Diesel implements Fuel{
+public class Diesel implements Fuel {
 	private int liter = 0;
 
 	/**
@@ -17,11 +17,13 @@ public class Diesel implements Fuel{
 
 	/**
 	 * Increases amount of diesel by the specified amount.
+	 * 
+	 * amount must be of type Integer.
 	 */
 	@Override
 	@Author("Koegler Alexander")
 	public void incAmount(Number amount) {
-		liter += (Integer)amount;
+		liter += (Integer) amount;
 	}
 
 	@Override

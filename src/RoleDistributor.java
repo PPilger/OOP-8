@@ -10,7 +10,7 @@
  * The key-type is String. The value-type is dependend on the Merger used.
  */
 @Author("Kletzander Christian")
-public class RoleDistributor<V> extends Distributor {
+public class RoleDistributor extends Distributor {
 
 	/**
 	 * Creates a new Distributor with the keys "Seeder", "Fertilizer" and "Total".

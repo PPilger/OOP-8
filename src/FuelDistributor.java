@@ -9,7 +9,7 @@
  * The key-type is String. The value-type is dependend on the Merger used.
  */
 @Author("Koegler Alexander")
-public class FuelDistributor<V> extends Distributor {
+public class FuelDistributor extends Distributor {
 
 	/**
 	 * Creates a new Distributor with the keys "BioGas" and "Diesel".
