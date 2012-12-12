@@ -1,7 +1,7 @@
-@Author ("Pilgertorfer Peter")
-/*
- * Retrieves a value of type V out of an object of type T
+/**
+ * Retrieves a value out of an object.
  */
+@Author ("Pilgertorfer Peter")
 public interface ValueGetter<T, V> {
 	
 	@Author ("Pilgertorfer Peter")

@@ -1,14 +1,24 @@
+/**
+ * Is able to calculate the minimum or maximum of some values.
+ */
 @Author("Pilgerstorfer Peter")
 public class Extremum {
 	private int value;
 	private boolean empty = true;
 	private boolean min;
 
+	/**
+	 * Creates a new Extremum. If min is true, the minimum or otherwise the
+	 * maximum is calculated.
+	 */
 	@Author("Pilgerstorfer Peter")
 	public Extremum(boolean min) {
 		this.min = true;
 	}
 
+	/**
+	 * Add a new sample to the extremum.
+	 */
 	@Author("Pilgerstorfer Peter")
 	public void add(Integer newVal) {
 		if (empty) {
@@ -21,6 +31,10 @@ public class Extremum {
 		}
 	}
 
+	/**
+	 * Returns the extremum (the minimum or the maximum of the added samples) or
+	 * null, if no sample was added.
+	 */
 	@Author("Pilgerstorfer Peter")
 	public Integer getValue() {
 		if (empty) {
@@ -29,6 +43,9 @@ public class Extremum {
 		return value;
 	}
 
+	/**
+	 * Returns the extremum as String or "none" if no sample was added.
+	 */
 	@Override
 	@Author("Pilgerstorfer Peter")
 	public String toString() {

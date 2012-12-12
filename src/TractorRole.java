@@ -1,7 +1,7 @@
-@Author("Kletzander Christian")
-/*
+/**
  * Represents a tractor's role with a numerical attribute
  */
+@Author("Kletzander Christian")
 public interface TractorRole {
 
 	/**
