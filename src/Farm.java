@@ -50,14 +50,6 @@ public class Farm {
 	}
 
 	/**
-	 * Changes the role of the tractor with the specified id to role.
-	 */
-	@Author("Koegler Alexander")
-	public void changeRole(int id, TractorRole role) {
-		myTractors.get(id).changeRole(role);
-	}
-
-	/**
 	 * Calculates the average operating hours grouped by roles.
 	 * 
 	 * The keys of the map are Strings (the name of the role or "Total"). The
