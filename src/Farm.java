@@ -5,7 +5,7 @@
 @Author("Kletzander Christian")
 public class Farm {
 	private final String name;
-	private Map<Integer, Tractor> myTractors;
+	private Map myTractors; // key: Integer, value: Tractor
 
 	/**
 	 * Creates a Farm with the specified name.
@@ -38,7 +38,7 @@ public class Farm {
 	 */
 	@Author("Koegler Alexander")
 	public Tractor getTractor(int id) {
-		return this.myTractors.get(id);
+		return (Tractor) this.myTractors.get(id);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class Farm {
 	 * values are Average objects.
 	 */
 	@Author("Kletzander Christian")
-	public Map<String, Average> avgOHPerRole() {
+	public Map avgOHPerRole() {
 		return foldRoles(new OperatingHoursMerger());
 	}
 
@@ -67,7 +67,7 @@ public class Farm {
 	 * Average objects.
 	 */
 	@Author("Kletzander Christian")
-	public Map<String, Average> avgOHPerFuel() {
+	public Map avgOHPerFuel() {
 		return foldFuels(new OperatingHoursMerger());
 	}
 
@@ -79,7 +79,7 @@ public class Farm {
 	 * values are Average objects.
 	 */
 	@Author("Kletzander Christian")
-	public Map<String, Average> avgDieselUsagePerRole() {
+	public Map avgDieselUsagePerRole() {
 		return foldRoles(new DieselMerger());
 	}
 
@@ -91,7 +91,7 @@ public class Farm {
 	 * values are Average objects.
 	 */
 	@Author("Kletzander Christian")
-	public Map<String, Average> avgBioGasUsagePerRole() {
+	public Map avgBioGasUsagePerRole() {
 		return foldRoles(new BioGasMerger());
 	}
 
@@ -99,10 +99,10 @@ public class Farm {
 	 * Calculates the minimum amount of sowing coulters grouped by fuels.
 	 * 
 	 * The keys of the map are Strings (the name of the fuel). The values are
-	 * Average objects.
+	 * Extremum objects.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public Map<String, Extremum> minCoultersPerFuel() {
+	public Map minCoultersPerFuel() {
 		return foldFuels(new CoulterMerger(true));
 	}
 
@@ -110,10 +110,10 @@ public class Farm {
 	 * Calculates the maximum amount of sowing coulters grouped by fuels.
 	 * 
 	 * The keys of the map are Strings (the name of the fuel). The values are
-	 * Average objects.
+	 * Extremum objects.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public Map<String, Extremum> maxCoultersPerFuel() {
+	public Map maxCoultersPerFuel() {
 		return foldFuels(new CoulterMerger(false));
 	}
 
@@ -124,7 +124,7 @@ public class Farm {
 	 * Average objects.
 	 */
 	@Author("Kletzander Christian")
-	public Map<String, Average> avgCapacityPerFuel() {
+	public Map avgCapacityPerFuel() {
 		return foldFuels(new CapacityMerger());
 	}
 
@@ -137,8 +137,8 @@ public class Farm {
 	 * values are dependent on the result-type of merger.
 	 */
 	@Author("Peter Pilgerstorfer")
-	private <V> Map<String, V> foldRoles(Merger<Tractor, V> merger) {
-		return myTractors.fold(new RoleDistributor<V>(merger));
+	private Map foldRoles(Merger merger) {
+		return myTractors.fold(new RoleDistributor(merger));
 	}
 
 	/**
@@ -146,24 +146,24 @@ public class Farm {
 	 * The tractors are folded per fuel and the result is stored under the
 	 * fuel-name in the result-map.
 	 * 
-	 * The keys of the map are Strings (the name of the fuel). The
-	 * values are dependent on the result-type of merger.
+	 * The keys of the map are Strings (the name of the fuel). The values are
+	 * dependent on the result-type of merger.
 	 */
 	@Author("Peter Pilgerstorfer")
-	private <V> Map<String, V> foldFuels(Merger<Tractor, V> merger) {
-		return myTractors.fold(new FuelDistributor<V>(merger));
+	private Map foldFuels(Merger merger) {
+		return myTractors.fold(new FuelDistributor(merger));
 	}
 
 	@Override
 	@Author("Kletzander Christian")
 	public String toString() {
-		Iterator<Tractor> it = myTractors.iterator();
+		Iterator tractorIter = myTractors.iterator();
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(name + ":\n");
 
-		while (it.hasNext()) {
-			sb.append(it.next().toString() + "\n");
+		while (tractorIter.hasNext()) {
+			sb.append(tractorIter.next().toString() + "\n");
 		}
 
 		return sb.toString();
