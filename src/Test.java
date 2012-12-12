@@ -1,203 +1,251 @@
 import java.lang.reflect.Method;
 
-//TODO: tests erstellen
-//TODO: annotationen hinzufügen
-//TODO: generics entfernen
-//TODO: tests nochmal durchfuehren
+@Author("Koegler Alexander")
 public class Test {
-
-	static Map allFarms = new Map(); // key: String, value: Farm
+	private static Map allFarms = new Map(); // key: String, value: Farm
 
 	/**
 	 * Test class
 	 * 
 	 * @param args
 	 */
-	@Author("Koegler Alexander")
+	@Author("Kletzander Christian")
 	public static void main(String[] args) {
 
 		/**
 		 * create Farm's
 		 */
-		System.out.println("########################################################");
-		System.out.println("############### Test #0 - Generate Farms ###############");
-		System.out.println("########################################################");
+		System.out
+				.println("########################################################");
+		System.out
+				.println("############### Test #0 - Generate Farms ###############");
+		System.out
+				.println("########################################################");
 		System.out.println();
-		
+
 		createKoeglersFarm();
 		createKletzisFarm();
 		createNullFarm();
 		createPetersFarm();
 
 		System.out.println();
-		
+
 		/**
 		 * add Tractors to Farm's
 		 */
-		System.out.println("########################################################");
-		System.out.println("############### Test #1 - Add Tractors to the Farms ####");
-		System.out.println("########################################################");
-		
+		System.out
+				.println("########################################################");
+		System.out
+				.println("############### Test #1 - Add Tractors to the Farms ####");
+		System.out
+				.println("########################################################");
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Koeglers Farm --------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Koeglers Farm --------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addTractorToKoeglersFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Kletzis Farm ---------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Kletzis Farm ---------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addTractorToKletzisFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Null's Farm ----------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Null's Farm ----------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addTractorToNullFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Peters Farm ----------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Peters Farm ----------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addTractorToPetersFarm();
 
 		System.out.println();
-		
+
 		/**
 		 * change Tractors at Farm's
 		 */
-		System.out.println("########################################################");
-		System.out.println("############### Test #2 - Change Tractors at the Farms #");
-		System.out.println("########################################################");
-		
+		System.out
+				.println("########################################################");
+		System.out
+				.println("############### Test #2 - Change Tractors at the Farms #");
+		System.out
+				.println("########################################################");
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Change at Koeglers Farm -----------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Change at Koeglers Farm -----------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		changeTractorsAtKoeglersFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Change at Kletzis Farm -----------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Change at Kletzis Farm -----------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		changeTractorsAtKletzisFarm();
 
 		System.out.println();
-		
+
 		/**
 		 * remove Tractors from Farm's
 		 */
-		System.out.println("########################################################");
-		System.out.println("############## Test #3 - Remove Tractors from the Farm #");
-		System.out.println("########################################################");
-		
+		System.out
+				.println("########################################################");
+		System.out
+				.println("############## Test #3 - Remove Tractors from the Farm #");
+		System.out
+				.println("########################################################");
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Remove Tractors at Koeglers Farm --------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Remove Tractors at Koeglers Farm --------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		removeTractorsFromKoeglersFarm();
 
 		System.out.println();
-		
+
 		/**
 		 * add new Tractors to Farm's
 		 */
-		System.out.println("########################################################");
-		System.out.println("############## Test #4 - Add new Tractors to the Farms #");
-		System.out.println("########################################################");
-		
+		System.out
+				.println("########################################################");
+		System.out
+				.println("############## Test #4 - Add new Tractors to the Farms #");
+		System.out
+				.println("########################################################");
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Koeglers Farm --------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Koeglers Farm --------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addNewTractorsToKoeglersFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Kletzis Farm ---------------------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Add to Kletzis Farm ---------------------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		addNewTractorsToKletzisFarm();
-		
+
 		System.out.println();
-		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Print statistical Informations ----------+");
-		System.out.println("-------------------------------------------------------");
+
+		System.out
+				.println("-------------------------------------------------------");
+		System.out
+				.println("+----------- Print statistical Informations ----------+");
+		System.out
+				.println("-------------------------------------------------------");
 		System.out.println();
-		
+
 		displayFarmStatistic();
 
 		System.out.println();
-		
+
 		/**
 		 * display Annotations
 		 */
-		System.out.println("########################################################");
-		System.out.println("##################### Annotations ######################");
-		System.out.println("########################################################");
+		System.out
+				.println("########################################################");
+		System.out
+				.println("##################### Annotations ######################");
+		System.out
+				.println("########################################################");
 		System.out.println();
-		
+
 		displayAnnotations();
 
 	}
 
+	@Author("Koegler Alexander")
 	private static void createKoeglersFarm() {
 		Farm myFarm = new Farm("Koeglers Farm");
 		allFarms.put(myFarm.getName(), myFarm);
 		System.out.println("Koeglers Farm erstellt");
 	}
 
+	@Author("Kletzander Christian")
 	private static void createKletzisFarm() {
 		Farm myFarm = new Farm("Kletzis Farm");
 		allFarms.put(myFarm.getName(), myFarm);
 		System.out.println("Kletzis Farm erstellt");
 	}
 
+	@Author("Kletzander Christian")
 	private static void createNullFarm() {
 		Farm myFarm = new Farm("Null Farm");
 		allFarms.put(myFarm.getName(), myFarm);
 		System.out.println("Nulls Farm erstellt");
 	}
 
+	@Author("Pilgerstorfer Peter")
 	private static void createPetersFarm() {
 		Farm myFarm = new Farm("Peter's Farm");
 		allFarms.put(myFarm.getName(), myFarm);
 		System.out.println("Peter's Farm erstellt");
 	}
 
+	@Author("Koegler Alexander")
 	private static void addTractorToKoeglersFarm() {
 		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
-		Tractor t1 = new Tractor(0, new BioGas(),
-				new Seeder(13));
+		Tractor t1 = new Tractor(0, new BioGas(), new Seeder(13));
 		t1.incConsumption(25.);
 		t1.incOperatingHours(5);
 		myFarm.addTractor(t1);
@@ -236,11 +284,11 @@ public class Test {
 		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 	}
 
+	@Author("Kletzander Christian")
 	private static void addTractorToKletzisFarm() {
 		Farm farmKletzi = (Farm) allFarms.get("Kletzis Farm");
 
-		Tractor tr = new Tractor(100, new BioGas(), new Seeder(
-				2));
+		Tractor tr = new Tractor(100, new BioGas(), new Seeder(2));
 		tr.incOperatingHours(12);
 		tr.incConsumption(19.0);
 		farmKletzi.addTractor(tr);
@@ -289,8 +337,7 @@ public class Test {
 
 		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
-		tr = new Tractor(107, new BioGas(), new Seeder(
-				3));
+		tr = new Tractor(107, new BioGas(), new Seeder(3));
 		tr.incOperatingHours(13);
 		tr.incConsumption(11.0);
 		farmKletzi.addTractor(tr);
@@ -298,10 +345,10 @@ public class Test {
 		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 	}
 
+	@Author("Kletzander Christian")
 	private static void addTractorToNullFarm() {
 		Farm farmKletzi = (Farm) allFarms.get("Null Farm");
-		Tractor tr = new Tractor(100, new BioGas(), new Seeder(
-				2));
+		Tractor tr = new Tractor(100, new BioGas(), new Seeder(2));
 		tr.incOperatingHours(11);
 		tr.incConsumption(12.0);
 		farmKletzi.addTractor(tr);
@@ -352,11 +399,11 @@ public class Test {
 
 	}
 
+	@Author("Pilgerstorfer Peter")
 	private static void addTractorToPetersFarm() {
 		Farm farm = (Farm) allFarms.get("Peter's Farm");
 
-		Tractor tr = new Tractor(1, new Diesel(),
-				new Seeder(5));
+		Tractor tr = new Tractor(1, new Diesel(), new Seeder(5));
 		tr.incConsumption(18);
 		tr.incOperatingHours(100);
 		farm.addTractor(tr);
@@ -386,6 +433,7 @@ public class Test {
 
 	}
 
+	@Author("Koegler Alexander")
 	private static void changeTractorsAtKoeglersFarm() {
 		Farm myFarm = (Farm) allFarms.get(("Koeglers Farm"));
 
@@ -416,11 +464,23 @@ public class Test {
 
 		System.out.println("New Entry: " + t1.toString());
 
+		t1 = myFarm.getTractor(2);
+
+		System.out.println("Old Entry: " + t1.toString());
+		System.out.println("|---- Change Role to Seeder");
+
+		if (t1 != null) {
+			t1.changeRole(new Seeder(12));
+		}
+
+		System.out.println("New Entry: " + t1.toString());
+
 	}
 
+	@Author("Kletzander Christian")
 	private static void changeTractorsAtKletzisFarm() {
 		Farm myFarm = (Farm) allFarms.get("Kletzis Farm");
-		
+
 		// increase Seeders AVG Operating Hours, and their consumption
 		Tractor t1 = myFarm.getTractor(100);
 
@@ -434,15 +494,16 @@ public class Test {
 		}
 
 		System.out.println("New Entry: " + t1.toString());
-		
+
 		int operatingHours = t1.getOperatingHours();
 		Number consumption = t1.getConsumption();
-		
-		System.out.println("*Read out values from Tractor: OperationHours ("+ operatingHours +") Consumption ("+ consumption + ")");
-		
+
+		System.out.println("*Read out values from Tractor: OperationHours ("
+				+ operatingHours + ") Consumption (" + consumption + ")");
+
 	}
 
-	
+	@Author("Koegler Alexander")
 	private static void removeTractorsFromKoeglersFarm() {
 		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
@@ -453,23 +514,23 @@ public class Test {
 		System.out.println("Traktor mit der ID 1 aus Koeglers Farm geloescht!");
 	}
 
+	@Author("Koegler Alexander")
 	private static void addNewTractorsToKoeglersFarm() {
 		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
-		Tractor t1 = new Tractor(33, new BioGas(),
-				new Fertilizer(30));
+		Tractor t1 = new Tractor(33, new BioGas(), new Fertilizer(30));
 		t1.incConsumption(20.);
 		t1.incOperatingHours(8);
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 	}
-	
+
+	@Author("Kletzander Christian")
 	private static void addNewTractorsToKletzisFarm() {
 		Farm myFarm = (Farm) allFarms.get("Kletzis Farm");
 
-		Tractor t1 = new Tractor(33, new BioGas(),
-				new Fertilizer(30));
+		Tractor t1 = new Tractor(33, new BioGas(), new Fertilizer(30));
 		t1.incConsumption(20.);
 		t1.incOperatingHours(8);
 		myFarm.addTractor(t1);
@@ -477,6 +538,7 @@ public class Test {
 		System.out.println(t1.toString() + " hinzugefuegt zu Kletzis Farm");
 	}
 
+	@Author("Kletzander Christian")
 	private static void displayFarmStatistic() {
 		Iterator iti = allFarms.iterator();
 		while (iti.hasNext()) {
@@ -484,8 +546,8 @@ public class Test {
 		}
 	}
 
+	@Author("Kletzander Christian")
 	private static void displayAnnotations() {
-
 		System.out.println(getAnnotations(Author.class));
 		System.out.println(getAnnotations(Average.class));
 		System.out.println(getAnnotations(BioGas.class));
@@ -510,7 +572,6 @@ public class Test {
 		System.out.println(getAnnotations(Tractor.class));
 		System.out.println(getAnnotations(TractorRole.class));
 		System.out.println(getAnnotations(ValueGetter.class));
-
 	}
 
 	/**
@@ -560,29 +621,36 @@ public class Test {
 	 * @param c
 	 *            must not be null
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Author("Kletzander Christian")
-	private static String getAnnotations(@SuppressWarnings("rawtypes") Class c) {
+	private static String getAnnotations(Class c) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Klasse: '" + c.getName() + "' von ");
 
 		try {
-			@SuppressWarnings("unchecked")
 			Author a = (Author) c.getAnnotation(Author.class);
 			sb.append(a.value() + "\n");
 		} catch (NullPointerException ex) {
 			sb.append("<No Author defined>\n");
 		}
 
-		for (Method m : c.getMethods()) {
-			sb.append("|------\tMethode: '" + m.getName() + "' von ");
+		for (Method m : c.getDeclaredMethods()) {
+			if (!m.isSynthetic()) {
+				Author author = m.getAnnotation(Author.class);
 
-			try {
-				String value = m.getAnnotation(Author.class).value();
-				sb.append(value + "\n");
-			} catch (NullPointerException ex) {
-				sb.append("<No Author defined>\n");
+				sb.append("|------\tMethode: '" + m.getName() + "' von ");
+
+				if (author != null) {
+					sb.append(author.value() + "\n");
+				} else {
+					sb.append("<No Author defined>\n");
+				}
 			}
+		}
+
+		for (Class sub : c.getDeclaredClasses()) {
+			sb.append(getAnnotations(sub));
 		}
 
 		return sb.toString();
