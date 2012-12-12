@@ -561,12 +561,13 @@ public class Test {
 	 *            must not be null
 	 */
 	@Author("Kletzander Christian")
-	private static String getAnnotations(Class c) {
+	private static String getAnnotations(@SuppressWarnings("rawtypes") Class c) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Klasse: '" + c.getName() + "' von ");
 
 		try {
+			@SuppressWarnings("unchecked")
 			Author a = (Author) c.getAnnotation(Author.class);
 			sb.append(a.value() + "\n");
 		} catch (NullPointerException ex) {
