@@ -1,17 +1,16 @@
-@Author("Pilgerstorfer Peter")
 /**
- * Merges objects of type T with corresponding value of type V into a map with keys of type K.
+ * Distributes objects to a every fitting key by merging the key's value with
+ * the object.
  */
+@Author("Pilgerstorfer Peter")
 public abstract class Distributor<T, K, V> {
 	private Map<K, V> map = new Map<K, V>();
 	private Merger<T, V> comb;
 
 	/**
-	 * Initializes object
-	 * 
 	 * @param comb
-	 *            used for merging values with existing one in map, and
-	 *            initializing the map's values
+	 *            is used to merge objects to the values of the distribution
+	 *            map.
 	 */
 	@Author("Pilgerstorfer Peter")
 	public Distributor(Merger<T, V> comb) {
@@ -19,32 +18,24 @@ public abstract class Distributor<T, K, V> {
 	}
 
 	/**
-	 * Adds key to map with initial value
-	 * 
-	 * @param key
+	 * Defines a valid key.
 	 */
 	@Author("Pilgerstorfer Peter")
-	protected void addType(K key) {
+	protected void addKey(K key) {
 		map.put(key, comb.initialValue());
 	}
 
 	/**
-	 * checking if object should be merged in add() with value mapped by given
-	 * key
+	 * Returns true if obj fits the key.
 	 * 
-	 * @param obj
-	 *            object
-	 * @param key
-	 * @return true if they should be merged, otherwise false
+	 * key is one of the keys added by addKey.
 	 */
 	@Author("Pilgerstorfer Peter")
 	protected abstract boolean fitsKey(T obj, K key);
 
 	/**
-	 * 
-	 * @param obj
-	 *            object which is used for merging with value mapped by the key
-	 *            which fits to the object (fitsKey() method)
+	 * Distributes obj to a every fitting key by merging the key's value with
+	 * the obj.
 	 */
 	@Author("Pilgerstorfer Peter")
 	public void add(T obj) {
@@ -64,7 +55,7 @@ public abstract class Distributor<T, K, V> {
 	}
 
 	/**
-	 * @return map
+	 * Returns the distribution-map.
 	 */
 	@Author("Pilgerstorfer Peter")
 	public Map<K, V> getDistribution() {
