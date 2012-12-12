@@ -13,7 +13,7 @@ public class Extremum {
 	 */
 	@Author("Pilgerstorfer Peter")
 	public Extremum(boolean min) {
-		this.min = true;
+		this.min = min;
 	}
 
 	/**
