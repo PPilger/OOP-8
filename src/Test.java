@@ -22,11 +22,15 @@ public class Test {
 		System.out.println("########################################################");
 		System.out.println("############### Test #0 - Generate Farms ###############");
 		System.out.println("########################################################");
+		System.out.println();
+		
 		createKoeglersFarm();
 		createKletzisFarm();
 		createNullFarm();
 		createPetersFarm();
 
+		System.out.println();
+		
 		/**
 		 * add Tractors to Farm's
 		 */
@@ -34,26 +38,44 @@ public class Test {
 		System.out.println("############### Test #1 - Add Tractors to the Farms ####");
 		System.out.println("########################################################");
 		
+		System.out.println();
+		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Add to Koeglers Farm --------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addTractorToKoeglersFarm();
+		
+		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Add to Kletzis Farm ---------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addTractorToKletzisFarm();
+		
+		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Add to Null's Farm ----------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addTractorToNullFarm();
+		
+		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Add to Peters Farm ----------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addTractorToPetersFarm();
 
+		System.out.println();
+		
 		/**
 		 * change Tractors at Farm's
 		 */
@@ -61,16 +83,26 @@ public class Test {
 		System.out.println("############### Test #2 - Change Tractors at the Farms #");
 		System.out.println("########################################################");
 		
-		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Change at Koeglers Farm -----------------+");
-		System.out.println("-------------------------------------------------------");
-		changeTractorsAtKoeglersFarm();
+		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Change at Koeglers Farm -----------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
+		changeTractorsAtKoeglersFarm();
+		
+		System.out.println();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Change at Koeglers Farm -----------------+");
+		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		changeTractorsAtKletzisFarm();
 
+		System.out.println();
+		
 		/**
 		 * remove Tractors from Farm's
 		 */
@@ -78,11 +110,17 @@ public class Test {
 		System.out.println("############## Test #3 - Remove Tractors from the Farm #");
 		System.out.println("########################################################");
 		
+		System.out.println();
+		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Remove Tractors at Koeglers Farm --------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		removeTractorsFromKoeglersFarm();
 
+		System.out.println();
+		
 		/**
 		 * add new Tractors to Farm's
 		 */
@@ -90,21 +128,35 @@ public class Test {
 		System.out.println("############## Test #4 - Add new Tractors to the Farms #");
 		System.out.println("########################################################");
 		
+		System.out.println();
+		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Add to Koeglers Farm --------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addNewTractorsToKoeglersFarm();
 		
+		System.out.println();
+		
 		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Add to Kletzis Farm --------------------+");
+		System.out.println("+----------- Add to Kletzis Farm ---------------------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		addNewTractorsToKletzisFarm();
+		
+		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("+----------- Print statistical Informations ----------+");
 		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		
 		displayFarmStatistic();
 
+		System.out.println();
+		
 		/**
 		 * display Annotations
 		 */
