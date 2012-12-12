@@ -160,6 +160,11 @@ public class Test {
 		/**
 		 * display Annotations
 		 */
+		System.out.println("########################################################");
+		System.out.println("##################### Annotations ######################");
+		System.out.println("########################################################");
+		System.out.println();
+		
 		displayAnnotations();
 
 	}
