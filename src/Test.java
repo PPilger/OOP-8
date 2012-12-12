@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 //TODO: tests nochmal durchfuehren
 public class Test {
 
-	static Map<String, Farm> allFarms = new Map<String, Farm>();
+	static Map allFarms = new Map(); // key: String, value: Farm
 
 	/**
 	 * Test class
@@ -137,9 +137,9 @@ public class Test {
 	}
 
 	private static void addTractorToKoeglersFarm() {
-		Farm myFarm = allFarms.get(("Koeglers Farm"));
+		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
-		Tractor t1 = new Tractor<BioGas, Double>(0, new BioGas(),
+		Tractor t1 = new Tractor(0, new BioGas(),
 				new Seeder(13));
 		t1.incConsumption(25.);
 		t1.incOperatingHours(5);
@@ -147,42 +147,42 @@ public class Test {
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 
-		t1 = new Tractor<BioGas, Double>(1, new BioGas(), new Seeder(14));
+		t1 = new Tractor(1, new BioGas(), new Seeder(14));
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 
-		t1 = new Tractor<BioGas, Double>(2, new BioGas(), new Fertilizer(15));
+		t1 = new Tractor(2, new BioGas(), new Fertilizer(15));
 		t1.incConsumption(37.);
 		t1.incOperatingHours(25);
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 
-		t1 = new Tractor<Diesel, Integer>(3, new Diesel(), new Seeder(26));
+		t1 = new Tractor(3, new Diesel(), new Seeder(26));
 		t1.incConsumption(25);
 		t1.incOperatingHours(5);
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 
-		t1 = new Tractor<Diesel, Integer>(4, new Diesel(), new Fertilizer(27));
+		t1 = new Tractor(4, new Diesel(), new Fertilizer(27));
 		t1.incConsumption(39);
 		t1.incOperatingHours(48);
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 
-		t1 = new Tractor<Diesel, Integer>(5, new Diesel(), new Seeder(28));
+		t1 = new Tractor(5, new Diesel(), new Seeder(28));
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
 	}
 
 	private static void addTractorToKletzisFarm() {
-		Farm farmKletzi = allFarms.get("Kletzis Farm");
+		Farm farmKletzi = (Farm) allFarms.get("Kletzis Farm");
 
-		Tractor tr = new Tractor<BioGas, Double>(100, new BioGas(), new Seeder(
+		Tractor tr = new Tractor(100, new BioGas(), new Seeder(
 				2));
 		tr.incOperatingHours(12);
 		tr.incConsumption(19.0);
@@ -190,42 +190,42 @@ public class Test {
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<BioGas, Double>(101, new BioGas(), new Fertilizer(3));
+		tr = new Tractor(101, new BioGas(), new Fertilizer(3));
 		tr.incOperatingHours(15);
 		tr.incConsumption(24.0);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<Diesel, Integer>(102, new Diesel(), new Seeder(8));
+		tr = new Tractor(102, new Diesel(), new Seeder(8));
 		tr.incOperatingHours(1);
 		tr.incConsumption(5);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<Diesel, Integer>(103, new Diesel(), new Fertilizer(5));
+		tr = new Tractor(103, new Diesel(), new Fertilizer(5));
 		tr.incOperatingHours(7);
 		tr.incConsumption(12);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<Diesel, Integer>(104, new Diesel(), new Fertilizer(9));
+		tr = new Tractor(104, new Diesel(), new Fertilizer(9));
 		tr.incOperatingHours(3);
 		tr.incConsumption(29);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<BioGas, Double>(105, new BioGas(), new Seeder(9));
+		tr = new Tractor(105, new BioGas(), new Seeder(9));
 		tr.incOperatingHours(4);
 		tr.incConsumption(4.0);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
-		tr = new Tractor<Diesel, Integer>(106, new Diesel(), new Seeder(1));
+		tr = new Tractor(106, new Diesel(), new Seeder(1));
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
@@ -235,8 +235,8 @@ public class Test {
 	}
 
 	private static void addTractorToNullFarm() {
-		Farm farmKletzi = allFarms.get("Null Farm");
-		Tractor tr = new Tractor<BioGas, Double>(100, new BioGas(), new Seeder(
+		Farm farmKletzi = (Farm) allFarms.get("Null Farm");
+		Tractor tr = new Tractor(100, new BioGas(), new Seeder(
 				2));
 		tr.incOperatingHours(11);
 		tr.incConsumption(12.0);
@@ -244,42 +244,42 @@ public class Test {
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<BioGas, Double>(101, new BioGas(), new Seeder(3));
+		tr = new Tractor(101, new BioGas(), new Seeder(3));
 		tr.incOperatingHours(11);
 		tr.incConsumption(22.0);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<Diesel, Integer>(102, new Diesel(), new Fertilizer(8));
+		tr = new Tractor(102, new Diesel(), new Fertilizer(8));
 		tr.incOperatingHours(3);
 		tr.incConsumption(8);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<Diesel, Integer>(103, new Diesel(), new Fertilizer(5));
+		tr = new Tractor(103, new Diesel(), new Fertilizer(5));
 		tr.incOperatingHours(2);
 		tr.incConsumption(9);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<Diesel, Integer>(104, new Diesel(), new Fertilizer(9));
+		tr = new Tractor(104, new Diesel(), new Fertilizer(9));
 		tr.incOperatingHours(2);
 		tr.incConsumption(13);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<BioGas, Double>(105, new BioGas(), new Seeder(9));
+		tr = new Tractor(105, new BioGas(), new Seeder(9));
 		tr.incOperatingHours(34);
 		tr.incConsumption(44.0);
 		farmKletzi.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
 
-		tr = new Tractor<Diesel, Integer>(106, new Diesel(), new Fertilizer(1));
+		tr = new Tractor(106, new Diesel(), new Fertilizer(1));
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
@@ -289,9 +289,9 @@ public class Test {
 	}
 
 	private static void addTractorToPetersFarm() {
-		Farm farm = allFarms.get("Peter's Farm");
+		Farm farm = (Farm) allFarms.get("Peter's Farm");
 
-		Tractor tr = new Tractor<Diesel, Integer>(1, new Diesel(),
+		Tractor tr = new Tractor(1, new Diesel(),
 				new Seeder(5));
 		tr.incConsumption(18);
 		tr.incOperatingHours(100);
@@ -299,21 +299,21 @@ public class Test {
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
 
-		tr = new Tractor<Diesel, Integer>(2, new Diesel(), new Fertilizer(10));
+		tr = new Tractor(2, new Diesel(), new Fertilizer(10));
 		tr.incConsumption(15);
 		tr.incOperatingHours(250);
 		farm.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
 
-		tr = new Tractor<BioGas, Double>(3, new BioGas(), new Fertilizer(4));
+		tr = new Tractor(3, new BioGas(), new Fertilizer(4));
 		tr.incConsumption(20.5);
 		tr.incOperatingHours(120);
 		farm.addTractor(tr);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
 
-		tr = new Tractor<BioGas, Double>(4, new BioGas(), new Seeder(7));
+		tr = new Tractor(4, new BioGas(), new Seeder(7));
 		tr.incConsumption(19.3);
 		tr.incOperatingHours(400);
 		farm.addTractor(tr);
@@ -323,7 +323,7 @@ public class Test {
 	}
 
 	private static void changeTractorsAtKoeglersFarm() {
-		Farm myFarm = allFarms.get(("Koeglers Farm"));
+		Farm myFarm = (Farm) allFarms.get(("Koeglers Farm"));
 
 		// increase Seeders AVG Operating Hours, and their consumption
 		Tractor t1 = myFarm.getTractor(5);
@@ -355,7 +355,7 @@ public class Test {
 	}
 
 	private static void changeTractorsAtKletzisFarm() {
-		Farm myFarm = allFarms.get(("Kletzis Farm"));
+		Farm myFarm = (Farm) allFarms.get("Kletzis Farm");
 		
 		// increase Seeders AVG Operating Hours, and their consumption
 		Tractor t1 = myFarm.getTractor(100);
@@ -380,7 +380,7 @@ public class Test {
 
 	
 	private static void removeTractorsFromKoeglersFarm() {
-		Farm myFarm = allFarms.get(("Koeglers Farm"));
+		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
 		myFarm.removeTractor(3);
 		System.out.println("Traktor mit der ID 3 aus Koeglers Farm geloescht!");
@@ -390,9 +390,9 @@ public class Test {
 	}
 
 	private static void addNewTractorsToKoeglersFarm() {
-		Farm myFarm = allFarms.get(("Koeglers Farm"));
+		Farm myFarm = (Farm) allFarms.get("Koeglers Farm");
 
-		Tractor t1 = new Tractor<BioGas, Double>(33, new BioGas(),
+		Tractor t1 = new Tractor(33, new BioGas(),
 				new Fertilizer(30));
 		t1.incConsumption(20.);
 		t1.incOperatingHours(8);
@@ -402,9 +402,9 @@ public class Test {
 	}
 	
 	private static void addNewTractorsToKletzisFarm() {
-		Farm myFarm = allFarms.get(("Kletzis Farm"));
+		Farm myFarm = (Farm) allFarms.get("Kletzis Farm");
 
-		Tractor t1 = new Tractor<BioGas, Double>(33, new BioGas(),
+		Tractor t1 = new Tractor(33, new BioGas(),
 				new Fertilizer(30));
 		t1.incConsumption(20.);
 		t1.incOperatingHours(8);
@@ -414,9 +414,9 @@ public class Test {
 	}
 
 	private static void displayFarmStatistic() {
-		Iterator<Farm> iti = allFarms.iterator();
+		Iterator iti = allFarms.iterator();
 		while (iti.hasNext()) {
-			prnt(iti.next());
+			print((Farm) iti.next());
 		}
 	}
 
@@ -456,7 +456,7 @@ public class Test {
 	 *            must not be null
 	 */
 	@Author("Koegler Alexander")
-	private static void prnt(Farm myFarm) {
+	private static void print(Farm myFarm) {
 		System.out.println(myFarm);
 
 		System.out.print("MinCoultsersPerFuel: [");
