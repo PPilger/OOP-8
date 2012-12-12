@@ -19,46 +19,90 @@ public class Test {
 		/**
 		 * create Farm's
 		 */
+		System.out.println("########################################################");
+		System.out.println("############### Test #0 - Generate Farms ###############");
+		System.out.println("########################################################");
 		createKoeglersFarm();
 		createKletzisFarm();
 		createNullFarm();
 		createPetersFarm();
 
-		displayFarmStatistic();
-
 		/**
 		 * add Tractors to Farm's
 		 */
-
+		System.out.println("########################################################");
+		System.out.println("############### Test #1 - Add Tractors to the Farms ####");
+		System.out.println("########################################################");
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Koeglers Farm --------------------+");
+		System.out.println("-------------------------------------------------------");
 		addTractorToKoeglersFarm();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Kletzis Farm ---------------------+");
+		System.out.println("-------------------------------------------------------");
 		addTractorToKletzisFarm();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Null's Farm ----------------------+");
+		System.out.println("-------------------------------------------------------");
 		addTractorToNullFarm();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Peters Farm ----------------------+");
+		System.out.println("-------------------------------------------------------");
 		addTractorToPetersFarm();
-
-		displayFarmStatistic();
 
 		/**
 		 * change Tractors at Farm's
 		 */
-
+		System.out.println("########################################################");
+		System.out.println("############### Test #2 - Change Tractors at the Farms #");
+		System.out.println("########################################################");
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Change at Koeglers Farm -----------------+");
+		System.out.println("-------------------------------------------------------");
 		changeTractorsAtKoeglersFarm();
-
-		displayFarmStatistic();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Change at Koeglers Farm -----------------+");
+		System.out.println("-------------------------------------------------------");
+		changeTractorsAtKletzisFarm();
 
 		/**
 		 * remove Tractors from Farm's
 		 */
-
+		System.out.println("########################################################");
+		System.out.println("############## Test #3 - Remove Tractors from the Farm #");
+		System.out.println("########################################################");
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Remove Tractors at Koeglers Farm --------+");
+		System.out.println("-------------------------------------------------------");
 		removeTractorsFromKoeglersFarm();
-
-		displayFarmStatistic();
 
 		/**
 		 * add new Tractors to Farm's
 		 */
-
+		System.out.println("########################################################");
+		System.out.println("############## Test #4 - Add new Tractors to the Farms #");
+		System.out.println("########################################################");
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Koeglers Farm --------------------+");
+		System.out.println("-------------------------------------------------------");
 		addNewTractorsToKoeglersFarm();
-
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Add to Kletzis Farm --------------------+");
+		System.out.println("-------------------------------------------------------");
+		addNewTractorsToKletzisFarm();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("+----------- Print statistical Informations ----------+");
+		System.out.println("-------------------------------------------------------");
 		displayFarmStatistic();
 
 		/**
@@ -71,21 +115,25 @@ public class Test {
 	private static void createKoeglersFarm() {
 		Farm myFarm = new Farm("Koeglers Farm");
 		allFarms.put(myFarm.getName(), myFarm);
+		System.out.println("Koeglers Farm erstellt");
 	}
 
 	private static void createKletzisFarm() {
 		Farm myFarm = new Farm("Kletzis Farm");
 		allFarms.put(myFarm.getName(), myFarm);
+		System.out.println("Kletzis Farm erstellt");
 	}
 
 	private static void createNullFarm() {
 		Farm myFarm = new Farm("Null Farm");
 		allFarms.put(myFarm.getName(), myFarm);
+		System.out.println("Nulls Farm erstellt");
 	}
 
 	private static void createPetersFarm() {
 		Farm myFarm = new Farm("Peter's Farm");
 		allFarms.put(myFarm.getName(), myFarm);
+		System.out.println("Peter's Farm erstellt");
 	}
 
 	private static void addTractorToKoeglersFarm() {
@@ -181,7 +229,6 @@ public class Test {
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
-		System.out.println(farmKletzi);
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
@@ -281,32 +328,57 @@ public class Test {
 		// increase Seeders AVG Operating Hours, and their consumption
 		Tractor t1 = myFarm.getTractor(5);
 
-		System.out.println(t1.toString());
-		System.out.println("Increment Operation Hours by 5");
-		System.out.println("Increment Consumption by 25");
+		System.out.println("Old Entry: " + t1.toString());
+		System.out.println("|---- Increment Operation Hours by 5");
+		System.out.println("|---- Increment Consumption by 25");
 
 		if (t1 != null) {
 			t1.incOperatingHours(5);
 			t1.incConsumption(25);
 		}
 
-		System.out.println(t1.toString());
+		System.out.println("New Entry: " + t1.toString());
 
 		t1 = myFarm.getTractor(1);
 
-		System.out.println(t1.toString());
-		System.out.println("Increment Operation Hours by 5");
-		System.out.println("Increment Consumption by 25");
+		System.out.println("Old Entry: " + t1.toString());
+		System.out.println("|---- Increment Operation Hours by 5");
+		System.out.println("|---- Increment Operation Hours by 25");
 
 		if (t1 != null) {
 			t1.incOperatingHours(5);
 			t1.incOperatingHours(25);
 		}
 
-		System.out.println(t1.toString());
+		System.out.println("New Entry: " + t1.toString());
 
 	}
 
+	private static void changeTractorsAtKletzisFarm() {
+		Farm myFarm = allFarms.get(("Kletzis Farm"));
+		
+		// increase Seeders AVG Operating Hours, and their consumption
+		Tractor t1 = myFarm.getTractor(100);
+
+		System.out.println("Old Entry: " + t1.toString());
+		System.out.println("|---- Increment Operation Hours by 5");
+		System.out.println("|---- Increment Consumption by 25");
+
+		if (t1 != null) {
+			t1.incOperatingHours(5);
+			t1.incConsumption(25.);
+		}
+
+		System.out.println("New Entry: " + t1.toString());
+		
+		int operatingHours = t1.getOperatingHours();
+		Number consumption = t1.getConsumption();
+		
+		System.out.println("*Read out values from Tractor: OperationHours ("+ operatingHours +") Consumption ("+ consumption + ")");
+		
+	}
+
+	
 	private static void removeTractorsFromKoeglersFarm() {
 		Farm myFarm = allFarms.get(("Koeglers Farm"));
 
@@ -327,6 +399,18 @@ public class Test {
 		myFarm.addTractor(t1);
 
 		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+	}
+	
+	private static void addNewTractorsToKletzisFarm() {
+		Farm myFarm = allFarms.get(("Kletzis Farm"));
+
+		Tractor t1 = new Tractor<BioGas, Double>(33, new BioGas(),
+				new Fertilizer(30));
+		t1.incConsumption(20.);
+		t1.incOperatingHours(8);
+		myFarm.addTractor(t1);
+
+		System.out.println(t1.toString() + " hinzufuegefuegt zu Kletzis Farm");
 	}
 
 	private static void displayFarmStatistic() {
