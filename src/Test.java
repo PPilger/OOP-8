@@ -202,38 +202,38 @@ public class Test {
 		t1.incOperatingHours(5);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 
 		t1 = new Tractor(1, new BioGas(), new Seeder(14));
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 
 		t1 = new Tractor(2, new BioGas(), new Fertilizer(15));
 		t1.incConsumption(37.);
 		t1.incOperatingHours(25);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 
 		t1 = new Tractor(3, new Diesel(), new Seeder(26));
 		t1.incConsumption(25);
 		t1.incOperatingHours(5);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 
 		t1 = new Tractor(4, new Diesel(), new Fertilizer(27));
 		t1.incConsumption(39);
 		t1.incOperatingHours(48);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 
 		t1 = new Tractor(5, new Diesel(), new Seeder(28));
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 	}
 
 	private static void addTractorToKletzisFarm() {
@@ -245,49 +245,49 @@ public class Test {
 		tr.incConsumption(19.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(101, new BioGas(), new Fertilizer(3));
 		tr.incOperatingHours(15);
 		tr.incConsumption(24.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(102, new Diesel(), new Seeder(8));
 		tr.incOperatingHours(1);
 		tr.incConsumption(5);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(103, new Diesel(), new Fertilizer(5));
 		tr.incOperatingHours(7);
 		tr.incConsumption(12);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(104, new Diesel(), new Fertilizer(9));
 		tr.incOperatingHours(3);
 		tr.incConsumption(29);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(105, new BioGas(), new Seeder(9));
 		tr.incOperatingHours(4);
 		tr.incConsumption(4.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(106, new Diesel(), new Seeder(1));
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 
 		tr = new Tractor(107, new BioGas(), new Seeder(
 				3));
@@ -295,7 +295,7 @@ public class Test {
 		tr.incConsumption(11.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Kletzis Farm");
 	}
 
 	private static void addTractorToNullFarm() {
@@ -306,49 +306,49 @@ public class Test {
 		tr.incConsumption(12.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(101, new BioGas(), new Seeder(3));
 		tr.incOperatingHours(11);
 		tr.incConsumption(22.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(102, new Diesel(), new Fertilizer(8));
 		tr.incOperatingHours(3);
 		tr.incConsumption(8);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(103, new Diesel(), new Fertilizer(5));
 		tr.incOperatingHours(2);
 		tr.incConsumption(9);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(104, new Diesel(), new Fertilizer(9));
 		tr.incOperatingHours(2);
 		tr.incConsumption(13);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(105, new BioGas(), new Seeder(9));
 		tr.incOperatingHours(34);
 		tr.incConsumption(44.0);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 		tr = new Tractor(106, new Diesel(), new Fertilizer(1));
 		tr.incOperatingHours(10);
 		tr.incConsumption(4);
 		farmKletzi.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Null's Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Null's Farm");
 
 	}
 
@@ -361,28 +361,28 @@ public class Test {
 		tr.incOperatingHours(100);
 		farm.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Peters Farm");
 
 		tr = new Tractor(2, new Diesel(), new Fertilizer(10));
 		tr.incConsumption(15);
 		tr.incOperatingHours(250);
 		farm.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Peters Farm");
 
 		tr = new Tractor(3, new BioGas(), new Fertilizer(4));
 		tr.incConsumption(20.5);
 		tr.incOperatingHours(120);
 		farm.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Peters Farm");
 
 		tr = new Tractor(4, new BioGas(), new Seeder(7));
 		tr.incConsumption(19.3);
 		tr.incOperatingHours(400);
 		farm.addTractor(tr);
 
-		System.out.println(tr.toString() + " hinzufuegefuegt zu Peters Farm");
+		System.out.println(tr.toString() + " hinzugefuegt zu Peters Farm");
 
 	}
 
@@ -462,7 +462,7 @@ public class Test {
 		t1.incOperatingHours(8);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Koeglers Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Koeglers Farm");
 	}
 	
 	private static void addNewTractorsToKletzisFarm() {
@@ -474,7 +474,7 @@ public class Test {
 		t1.incOperatingHours(8);
 		myFarm.addTractor(t1);
 
-		System.out.println(t1.toString() + " hinzufuegefuegt zu Kletzis Farm");
+		System.out.println(t1.toString() + " hinzugefuegt zu Kletzis Farm");
 	}
 
 	private static void displayFarmStatistic() {
