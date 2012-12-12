@@ -289,6 +289,13 @@ public class Test {
 
 		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 
+		tr = new Tractor(107, new BioGas(), new Seeder(
+				3));
+		tr.incOperatingHours(13);
+		tr.incConsumption(11.0);
+		farmKletzi.addTractor(tr);
+
+		System.out.println(tr.toString() + " hinzufuegefuegt zu Kletzis Farm");
 	}
 
 	private static void addTractorToNullFarm() {
