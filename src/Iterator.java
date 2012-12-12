@@ -1,5 +1,5 @@
 @Author("Peter Pilgerstorfer")
-public interface Iterator<T> {
+public interface Iterator {
 	/**
 	 * Returns true if there are more elements to read and false otherwise.
 	 */
@@ -11,5 +11,5 @@ public interface Iterator<T> {
 	 * false), the behavior is undefined.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public T next();
+	public Object next();
 }

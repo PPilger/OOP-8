@@ -3,7 +3,7 @@
  * may be null.
  */
 @Author("Peter Pilgerstorfer")
-public class Map<K, V> {
+public class Map {
 	private Node root; // root of the linked list
 
 	/**
@@ -13,7 +13,7 @@ public class Map<K, V> {
 	 * key may be null.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public void put(K key, V value) {
+	public void put(Object key, Object value) {
 		Node node = getNode(key);
 
 		if (node != null) {
@@ -39,7 +39,7 @@ public class Map<K, V> {
 	 * such element, null is returned.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public V get(K key) {
+	public Object get(Object key) {
 		Node node = getNode(key);
 
 		if (node != null) {
@@ -54,7 +54,7 @@ public class Map<K, V> {
 	 * nothing is changed.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public void remove(K key) {
+	public void remove(Object key) {
 		Node node = getNode(key);
 
 		if (node == null) {
@@ -86,11 +86,11 @@ public class Map<K, V> {
 	 *            must not be null
 	 */
 	@Author("Peter Pilgerstorfer")
-	public <T, R> Map<T, R> fold(Distributor<V, T, R> aggregator) {
-		Iterator<V> it = iterator();
+	public Map fold(Distributor aggregator) {
+		Iterator it = iterator();
 
 		while (it.hasNext()) {
-			V element = it.next();
+			Object element = it.next();
 			aggregator.add(element);
 		}
 
@@ -101,11 +101,11 @@ public class Map<K, V> {
 	 * Returns an iterator that iterates through the values of the map.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public Iterator<V> iterator() {
-		return new MapIterator<V>(new ValueGetter<Node, V>() {
+	public Iterator iterator() {
+		return new MapIterator(new ValueGetter() {
 			@Override
-			public V getValue(Node obj) {
-				return obj.value;
+			public Object getValue(Object obj) {
+				return ((Node)obj).value;
 			}
 		});
 	}
@@ -114,11 +114,11 @@ public class Map<K, V> {
 	 * Returns an iterator that iterates through the keys of the map.
 	 */
 	@Author("Peter Pilgerstorfer")
-	public Iterator<K> keyIterator() {
-		return new MapIterator<K>(new ValueGetter<Node, K>() {
+	public Iterator keyIterator() {
+		return new MapIterator(new ValueGetter() {
 			@Override
-			public K getValue(Node obj) {
-				return obj.key;
+			public Object getValue(Object obj) {
+				return ((Node)obj).key;
 			}
 		});
 	}
@@ -127,11 +127,11 @@ public class Map<K, V> {
 	 * Returns an iterator that iterates through the nodes of the map.
 	 */
 	@Author("Peter Pilgerstorfer")
-	private Iterator<Node> nodeIterator() {
-		return new MapIterator<Node>(new ValueGetter<Node, Node>() {
+	private Iterator nodeIterator() {
+		return new MapIterator(new ValueGetter() {
 			@Override
-			public Node getValue(Node obj) {
-				return obj;
+			public Node getValue(Object obj) {
+				return (Node) obj;
 			}
 		});
 	}
@@ -139,17 +139,17 @@ public class Map<K, V> {
 	@Author("Peter Pilgerstorfer")
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		Iterator<Node> iter = nodeIterator();
+		Iterator iter = nodeIterator();
 
 		sb.append("[");
 
 		if (iter.hasNext()) {
-			sb.append(iter.next());
+			sb.append((Node)iter.next());
 		}
 
 		while (iter.hasNext()) {
 			sb.append(", ");
-			sb.append(iter.next());
+			sb.append((Node)iter.next());
 		}
 
 		sb.append("]");
@@ -162,11 +162,11 @@ public class Map<K, V> {
 	 * exist.
 	 */
 	@Author("Peter Pilgerstorfer")
-	private Node getNode(K key) {
-		Iterator<Node> iter = nodeIterator();
+	private Node getNode(Object key) {
+		Iterator iter = nodeIterator();
 
 		while (iter.hasNext()) {
-			Node node = iter.next();
+			Node node = (Node)iter.next();
 
 			if (node.key == key) {
 				return node;
@@ -184,13 +184,13 @@ public class Map<K, V> {
 	 */
 	@Author("Peter Pilgerstorfer")
 	private class Node {
-		private K key;
-		private V value;
+		private Object key;
+		private Object value;
 		private Node next;
 		private Node prev;
 
 		@Author("Peter Pilgerstorfer")
-		private Node(K key, V value) {
+		private Node(Object key, Object value) {
 			this.key = key;
 			this.value = value;
 		}
@@ -208,9 +208,9 @@ public class Map<K, V> {
 	 * object).
 	 */
 	@Author("Peter Pilgerstorfer")
-	private class MapIterator<T> implements Iterator<T> {
+	private class MapIterator implements Iterator {
 		private Node next = root;
-		private ValueGetter<Node, T> valGetter;
+		private ValueGetter valGetter;
 
 		/**
 		 * Creates a new MapIterator that iterates over the desired attributes.
@@ -221,7 +221,7 @@ public class Map<K, V> {
 		 *            must not be null
 		 */
 		@Author("Peter Pilgerstorfer")
-		private MapIterator(ValueGetter<Node, T> valGetter) {
+		private MapIterator(ValueGetter valGetter) {
 			this.valGetter = valGetter;
 		}
 
@@ -240,8 +240,8 @@ public class Map<K, V> {
 		 */
 		@Override
 		@Author("Peter Pilgerstorfer")
-		public T next() {
-			T value = valGetter.getValue(next);
+		public Object next() {
+			Object value = valGetter.getValue(next);
 
 			if (next == null) {
 				return null;

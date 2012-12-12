@@ -2,8 +2,8 @@
  * Retrieves a value out of an object.
  */
 @Author ("Pilgertorfer Peter")
-public interface ValueGetter<T, V> {
+public interface ValueGetter {
 	
 	@Author ("Pilgertorfer Peter")
-	public V getValue(T obj);
+	public Object getValue(Object obj);
 }
