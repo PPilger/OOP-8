@@ -3,14 +3,14 @@
  * types.
  */
 @Author("Pilgerstorfer Peter")
-public interface Merger<T, V> {
+public interface Merger {
 
 	@Author(value = "Pilgerstorfer Peter")
-	public V initialValue();
+	public Object initialValue();
 
 	/**
 	 * Returns obj merged to value. value may be changed by this method.
 	 */
 	@Author(value = "Pilgerstorfer Peter")
-	public V merge(T obj, V value);
+	public Object merge(Object obj, Object value);
 }

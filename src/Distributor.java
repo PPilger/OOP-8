@@ -3,9 +3,9 @@
  * the object.
  */
 @Author("Pilgerstorfer Peter")
-public abstract class Distributor<T, K, V> {
-	private Map<K, V> map = new Map<K, V>();
-	private Merger<T, V> comb;
+public abstract class Distributor {
+	private Map map = new Map();
+	private Merger comb;
 
 	/**
 	 * @param comb
@@ -13,7 +13,7 @@ public abstract class Distributor<T, K, V> {
 	 *            map.
 	 */
 	@Author("Pilgerstorfer Peter")
-	public Distributor(Merger<T, V> comb) {
+	public Distributor(Merger comb) {
 		this.comb = comb;
 	}
 
@@ -21,7 +21,7 @@ public abstract class Distributor<T, K, V> {
 	 * Defines a valid key.
 	 */
 	@Author("Pilgerstorfer Peter")
-	protected void addKey(K key) {
+	protected void addKey(Object key) {
 		map.put(key, comb.initialValue());
 	}
 
@@ -31,21 +31,21 @@ public abstract class Distributor<T, K, V> {
 	 * key is one of the keys added by addKey.
 	 */
 	@Author("Pilgerstorfer Peter")
-	protected abstract boolean fitsKey(T obj, K key);
+	protected abstract boolean fitsKey(Object obj, Object key);
 
 	/**
 	 * Distributes obj to a every fitting key by merging the key's value with
 	 * the obj.
 	 */
 	@Author("Pilgerstorfer Peter")
-	public void add(T obj) {
-		Iterator<K> keyIter = map.keyIterator();
+	public void add(Object obj) {
+		Iterator keyIter = map.keyIterator();
 
 		while (keyIter.hasNext()) {
-			K key = keyIter.next();
+			Object key = keyIter.next();
 
 			if (fitsKey(obj, key)) {
-				V value = map.get(key);
+				Object value = map.get(key);
 
 				value = comb.merge(obj, value);
 
@@ -55,10 +55,10 @@ public abstract class Distributor<T, K, V> {
 	}
 
 	/**
-	 * Returns the distribution-map.
+	 * Returns a map containing the keys and the merged values.
 	 */
 	@Author("Pilgerstorfer Peter")
-	public Map<K, V> getDistribution() {
+	public Map getDistribution() {
 		return map;
 	}
 }

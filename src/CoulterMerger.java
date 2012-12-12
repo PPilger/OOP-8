@@ -1,8 +1,10 @@
 /**
  * Calculates the minimum or maximum of the coulter amount of seeding tractors.
+ * 
+ * Merges Tractors to an Extremum object.
  */
 @Author("Koegler Alexander")
-public class CoulterMerger implements Merger<Tractor, Extremum> {
+public class CoulterMerger implements Merger {
 	private boolean min;
 
 	/**
@@ -25,15 +27,20 @@ public class CoulterMerger implements Merger<Tractor, Extremum> {
 	 * tractor to ext and returns ext. Otherwise ext is returned unchanged.
 	 * 
 	 * ext may be changed by this method.
+	 * 
+	 * tractor must be a Tractor and ext an Extremum object.
 	 */
 	@Override
 	@Author("Koegler Alexander")
-	public Extremum merge(Tractor tractor, Extremum ext) {
-		if (tractor.getRole().getClass() == Seeder.class) {
-			ext.add(tractor.getAttirbute().intValue());
+	public Extremum merge(Object tractor, Object ext) {
+		Tractor tr = (Tractor) tractor;
+		Extremum ex = (Extremum) ext;
+
+		if (tr.getRole().getClass() == Seeder.class) {
+			ex.add(tr.getAttirbute().intValue());
 		}
 
-		return ext;
+		return ex;
 	}
 
 }

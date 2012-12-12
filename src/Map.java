@@ -105,7 +105,7 @@ public class Map {
 		return new MapIterator(new ValueGetter() {
 			@Override
 			public Object getValue(Object obj) {
-				return ((Node)obj).value;
+				return ((Node) obj).value;
 			}
 		});
 	}
@@ -118,7 +118,7 @@ public class Map {
 		return new MapIterator(new ValueGetter() {
 			@Override
 			public Object getValue(Object obj) {
-				return ((Node)obj).key;
+				return ((Node) obj).key;
 			}
 		});
 	}
@@ -144,12 +144,12 @@ public class Map {
 		sb.append("[");
 
 		if (iter.hasNext()) {
-			sb.append((Node)iter.next());
+			sb.append((Node) iter.next());
 		}
 
 		while (iter.hasNext()) {
 			sb.append(", ");
-			sb.append((Node)iter.next());
+			sb.append((Node) iter.next());
 		}
 
 		sb.append("]");
@@ -166,7 +166,7 @@ public class Map {
 		Iterator iter = nodeIterator();
 
 		while (iter.hasNext()) {
-			Node node = (Node)iter.next();
+			Node node = (Node) iter.next();
 
 			if (node.key == key) {
 				return node;

@@ -6,15 +6,19 @@
  * "Seeder": every tractor with role Seeder fits,
  * "Fertilizer": every tractor with role Fertilizer fits,
  * "Total": every tractor fits
+ * 
+ * The key-type is String. The value-type is dependend on the Merger used.
  */
 @Author("Kletzander Christian")
-public class RoleDistributor<V> extends Distributor<Tractor, String, V> {
+public class RoleDistributor<V> extends Distributor {
 
 	/**
 	 * Creates a new Distributor with the keys "Seeder", "Fertilizer" and "Total".
+	 * 
+	 * comb must be able to merge Tractor objects to a Merger-dependend value.
 	 */
 	@Author("Kletzander Christian")
-	public RoleDistributor(Merger<Tractor, V> comb) {
+	public RoleDistributor(Merger comb) {
 		super(comb);
 
 		addKey(Seeder.class.getName());
@@ -26,13 +30,17 @@ public class RoleDistributor<V> extends Distributor<Tractor, String, V> {
 	 * Returns true if tractor fits to fuelType.
 	 * 
 	 * fuelType is "Seeder" or "Fertilizer" or "Total".
+	 * 
+	 * tractor must be a Tractor and fuelType a String object.
 	 */
 	@Override
 	@Author("Pilgerstorfer Peter")
-	protected boolean fitsKey(Tractor obj, String key) {
+	protected boolean fitsKey(Object tractor, Object key) {
+		Tractor tr = (Tractor) tractor;
+		
 		if ("Total".equals(key)) {
 			return true;
 		}
-		return key.equals(obj.getRole().getClass().getName());
+		return key.equals(tr.getRole().getClass().getName());
 	}
 }
