@@ -95,7 +95,7 @@ public class Test {
 		System.out.println();
 		
 		System.out.println("-------------------------------------------------------");
-		System.out.println("+----------- Change at Koeglers Farm -----------------+");
+		System.out.println("+----------- Change at Kletzis Farm -----------------+");
 		System.out.println("-------------------------------------------------------");
 		System.out.println();
 		
