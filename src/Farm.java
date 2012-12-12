@@ -13,7 +13,7 @@ public class Farm {
 	@Author("Kletzander Christian")
 	public Farm(String name) {
 		this.name = name;
-		this.myTractors = new Map<Integer, Tractor>();
+		this.myTractors = new Map();
 	}
 
 	/**
