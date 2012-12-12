@@ -545,7 +545,7 @@ public class Test {
 	/**
 	 * Displays author infos about a specific class and methods
 	 * 
-	 * @param myFarm
+	 * @param c
 	 *            must not be null
 	 */
 	@Author("Kletzander Christian")
